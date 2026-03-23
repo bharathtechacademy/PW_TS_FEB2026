@@ -36,3 +36,15 @@ Inheritance is a concept of extending parent class properties into child class w
 ## this & super
 'this' refers to the current class instance. 
 'super' refers to the superclass or parent class instance. 
+
+## Abstraction
+Abstraction is a concept of hiding the implementation
+
+## Interface 
+100% abstract class
+
+## Polymophism
+Concept of having one method with different implementations
+
+compile-time (method overloading) ==> having multiple methods with in the same class , with same name with different parameters
+run-time (method overriding) ==> having multiple methods with same name  and with same parameters between parent and child classes
