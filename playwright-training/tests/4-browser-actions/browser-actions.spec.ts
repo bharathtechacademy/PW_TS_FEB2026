@@ -14,7 +14,6 @@ test('Browser actions', async ({  }) => {
 
     //Within the browser context, now launch the new page / tab
     const page = await browserContext.newPage();
-
     //Maximize the browser window to a specific resolution. (1920 * 1080)
     await page.setViewportSize({ width: 1920, height: 1080 });
 
