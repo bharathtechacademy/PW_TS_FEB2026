@@ -19,6 +19,38 @@
 //Syntax 5: //tagName[contains(text(),'value')]
 //Syntax 6: //tagName[starts-with(text(),'value')]
 
+/****************************************************/
+/****LEVEL 3- Combine multiple attributes using AND**/
+/****************************************************/
+//Syntax 7: //tagName[@attribute1='value' and @attribute2='value' and text()='value']
+
+/****************************************************/
+/****LEVEL 4- Advanced Xpath With Relationships******/
+/****************************************************/
+
+//Syntax 8: referenceElementXpath/relationship::targetElementXpath
+
+// target => sibling => parent => ancestor => ancestor's parent
+
+//ancestors parent: //div[@id="footerPanel"]
+//ancestor : //ul
+//parent : //li
+//sibling : NA
+//target : //a[text()="Services"]
+
+//div[@id="footerPanel"]/child::ul/child::li/child::a[text()="Services"]
+//div[@id="footerPanel"]//a[text()="Services"]
+
+//child
+//parent
+//ancestor
+//following-sibling
+//preceding-sibling
+//following
+//preceding
+// / => child
+// // => descendant ==> with in the family
+
 
 import { test, expect } from '@playwright/test';
 
@@ -44,6 +76,12 @@ test('XPATH selector syntax', async ({ page }) => {
 
     //Locate the 'caption' using syntax 6.
     await page.locator('//p[starts-with(text(),"Experience")]');
+
+    //Locate the 'caption' using syntax 7.
+    await page.locator('//p[@class="caption" and text()="Experience the difference"]');
+
+    //Locate the 'Services' link using syntax 8.
+    await page.locator('//div[@id="footerPanel"]//a[text()="Services"]');
 
 
 
