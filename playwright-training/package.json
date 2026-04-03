@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-  
+  "test" :"playwright test tests/6-webactions-assertions/web-actions1.spec.ts --headed"
   },
   "keywords": [],
   "author": "",
