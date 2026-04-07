@@ -4,9 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-  "test" :"playwright test tests/6-webactions-assertions/web-actions5.spec.ts --headed",
-  "report":"playwright show-report",
-  "debug":"playwright test tests/6-webactions-assertions/web-actions3.spec.ts --debug"
+    "test": "playwright test tests/6-webactions-assertions/web-actions6.spec.ts --headed",
+    "test:allure": "playwright test tests/6-webactions-assertions/web-actions7.spec.ts --headed",
+    "allure:generate": "npx allure generate allure-results --clean -o allure-report",
+    "allure:open": "npx allure open allure-report",
+    "allure:serve": "npx allure serve allure-results",
+    "report": "playwright show-report",
+    "debug": "playwright test tests/6-webactions-assertions/web-actions3.spec.ts --debug"
   },
   "keywords": [],
   "author": "",
@@ -14,6 +18,19 @@
   "type": "commonjs",
   "devDependencies": {
     "@playwright/test": "^1.58.2",
-    "@types/node": "^25.5.0"
+    "@types/node": "^25.5.2",
+    "allure-commandline": "^2.38.1",
+    "allure-js-commons": "^3.6.0",
+    "allure-playwright": "^3.6.0"
+  },
+  "dependencies": {
+    "@types/diff": "^7.0.2",
+    "@types/pixelmatch": "^5.2.6",
+    "@types/pngjs": "^6.0.5",
+    "diff": "^8.0.4",
+    "fs": "^0.0.1-security",
+    "pixelmatch": "^7.1.0",
+    "pngjs": "^7.0.0",
+    "typescript": "^6.0.2"
   }
 }

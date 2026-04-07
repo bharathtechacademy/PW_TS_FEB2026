@@ -1,0 +1,58 @@
+Row 1 Column 1 value is : Method
+      
+Row 1 Column 2 value is : Parameters
+      
+Row 1 Column 3 value is : Description
+      
+Row 2 Column 1 value is : getItemById
+Row 2 Column 2 value is : int
+Row 2 Column 3 value is : Returns
+the Book object with the given item id. Valid id values are 1- 9, or if you add a
+new entry using the addNewItemToInventory
+method, you can
+retrieve a Book using the new id.
+      
+Row 3 Column 1 value is : getItemByTitle 
+Row 3 Column 2 value is : string
+Row 3 Column 3 value is : Returns
+a list of Book objects that match your title search query. The Book's
+price value will increase by $1.00
+every 5 invocations.
+Example keywords: linux, java, C++,
+      program.
+ Leave it blank to get ALL
+the books in the
+database.
+Row 4 Column 1 value is : addItemToCart 
+Row 4 Column 2 value is : int,
+int, int
+      
+Row 4 Column 3 value is : Adds
+a specified amount of Books to a cart. If no cartId is given or if the
+cartId is equal to 0, a unique Id will be genearted for the user.
+All carts that are inactive for 20 minutes will be removed.
+Row 5 Column 1 value is : getItemsInCart 
+Row 5 Column 2 value is : int
+      
+Row 5 Column 3 value is : Returns a list of items that
+exist in the specified cart.
+      
+Row 6 Column 1 value is : updateItemInCart
+Row 6 Column 2 value is : int,
+int, int
+      
+Row 6 Column 3 value is : Update
+an existing order in a cart. Cannot update an order where quantity
+supplied is greater than the quantity in stock. Possible to update na
+order to have zero quantity.
+      
+Row 7 Column 1 value is : submitOrder
+Row 7 Column 2 value is : int
+      
+Row 7 Column 3 value is : Submits the items in a cart.
+This removes all the existing items in the cart and deletes the cartId.
+Row 8 Column 1 value is : addNewItemToInventory
+Row 8 Column 2 value is : Book
+Row 8 Column 3 value is : Add
+new book entries into the database. All new entries that are not
+accessed within 20 minutes will be removed from the database.
