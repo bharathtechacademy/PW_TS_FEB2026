@@ -3,7 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:report": "playwright show-report",
+    "ui": "playwright test tests/ui --headed",
+    "custom": "playwright test tests/ui -g \"Verify Login with Valid Credentials\" --headed"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

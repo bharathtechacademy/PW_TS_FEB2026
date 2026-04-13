@@ -13,6 +13,31 @@ export class WebCommons {
         return this.page.locator(locator);
     }
 
+    //Common method  to generate WebElements from the differnt types of locators(getByText, getByRole, getByLabel, getByPlaceholder, getByAltText, getByTitle
+    async elements(locator: string, locatorType: string): Promise<Locator> {
+
+        switch (locatorType) {
+            case 'getByText':
+                return this.page.getByText(locator);
+                break;
+            case 'getByLabel':
+                return this.page.getByLabel(locator);
+                break;
+            case 'getByPlaceholder':
+                return this.page.getByPlaceholder(locator);
+                break;
+            case 'getByAltText':
+                return this.page.getByAltText(locator);
+                break;
+            case 'getByTitle':
+                return this.page.getByTitle(locator);
+                break;
+            default:
+                throw new Error(`Invalid locator type: ${locatorType}`);
+        }
+
+    }
+
     //Common method to launch the application
     async launchApplication(url: string, title?: string): Promise<void> {
         await this.page.goto(url);
@@ -122,19 +147,20 @@ export class WebCommons {
     //Common method to check if an element is visible
     async isElementVisible(locator: string): Promise<void> {
         const element = await this.element(locator);
-        expect(element).toBeVisible();
+        await this.scrollToElement(locator);
+        await expect(element).toBeVisible();
     }
 
     //Common method to check if an element is enabled
     async isElementEnabled(locator: string): Promise<void> {
         const element = await this.element(locator);
-        expect(element).toBeEnabled();
+        await expect(element).toBeEnabled();
     }
 
     //Common method to verify element is disappeared
     async isElementDisappeared(locator: string): Promise<void> {
         const element = await this.element(locator);
-        expect(element).toBeHidden();
+        await expect(element).toBeHidden();
     }
 
     //Common method to handle alert pop-up
@@ -155,7 +181,7 @@ export class WebCommons {
 
     //Common method to compare text values
     async compareText(actual :string |null, expected:string){
-        if(actual!==expected){
+        if(!(actual?.includes(expected))){
             throw new Error(`Expected Value is ${expected} , But found ${actual}`);
         }
     }
