@@ -199,8 +199,8 @@ The data or the information that will be downloaded and shared with the user alo
 Application : https://github.com/
 API Documentation : https://docs.github.com/en/rest/repos/repos
 
-GIT Account :
-GIT TOKEN:
+GIT Account : bharathtechacademy05
+GIT TOKEN: Bearer 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
 
 ## Scenarios: 
 
@@ -219,7 +219,83 @@ GIT TOKEN:
 4. Adding API Requests inside the API Collection (Hover on collection -> Add Request -> Update Request Details)
 
 
+# API Documentation
 
+## 1. Creating a duplicate repository with valid credentials. 
 
+### Purpose : Create a repository for the authenticated user
 
+### Request type : post
 
+### Request URL : https://api.github.com/user/repos
+
+### Request Body :
+
+* * name string Required
+The name of the repository.
+
+description string
+A short description of the repository.
+
+private boolean
+Whether the repository is private.
+Default: false
+
+### Authorization Mechanism : 
+
+"Authorization: Bearer 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"
+
+Generate Token : Profile -> Settings -> Developer Settings -> Personal access tokens -> Tokens (Classic) -> Generate new token -> Generate new token(classic)
+or 
+after login -> go to "https://github.com/settings/tokens/new"
+
+### Headers:
+
+-H "Accept: application/vnd.github+json" \
+-H "Authorization: Bearer <YOUR-TOKEN>" \
+-H "X-GitHub-Api-Version: 2026-03-10" \
+
+![alt text](image.png)
+
+### Expected Status:
+Status: 201
+
+### Expected Response Body:
+{
+  "id": 1296269,
+  "node_id": "MDEwOlJlcG9zaXRvcnkxMjk2MjY5",
+  "name": "Hello-World",
+  "full_name": "octocat/Hello-World",
+  "owner": {
+    "login": "octocat",
+    "id": 1,
+    "node_id": "MDQ6VXNlcjE=",
+    "avatar_url": "https://github.com/images/error/octocat_happy.gif",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/octocat",
+    "html_url": "https://github.com/octocat",
+    "followers_url": "https://api.github.com/users/octocat/followers",
+    "following_url": "https://api.github.com/users/octocat/following{/other_user}",
+  }}
+
+  ### Expected Response Schema:
+  {
+  "title": "Full Repository",
+  "description": "Full Repository",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "format": "int64"
+    },
+    "node_id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "full_name": {
+      "type": "string"
+    }}}
+
+![alt text](image-1.png)
