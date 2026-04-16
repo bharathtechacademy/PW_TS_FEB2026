@@ -158,8 +158,8 @@ export class WebCommons {
     }
 
     //Common method to verify element is disappeared
-    async isElementDisappeared(locator: string): Promise<void> {
-        const element = await this.element(locator);
+    async isElementDisappeared(locator: Promise<string>): Promise<void> {
+        const element = await this.element(await locator);
         await expect(element).toBeHidden();
     }
 
