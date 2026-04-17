@@ -13,8 +13,9 @@
         "database": "my_database"
     },
     "api": {
-        "endpoint": "https://api.example.com",
-        "key": "your_api_key"
+        "base_url": "https://api.github.com",
+        "owner": "bharathtechacademy05",
+        "bearer_token": "Bearer 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"
     },
     "ollama": {
         "model": "ollama/model:latest",
