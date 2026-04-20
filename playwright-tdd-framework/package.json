@@ -8,7 +8,8 @@
     "test:headed": "playwright test --headed",
     "test:report": "playwright show-report",
     "ui": "playwright test tests/ui --headed",
-    "custom": "playwright test tests/ui -g \"Verify Login with Valid Credentials\" --headed"
+    "custom": "playwright test tests/ui -g \"Verify Login with Valid Credentials\" --headed",
+    "api": "playwright test tests/api/api-tests.spec.ts"
   },
   "keywords": [],
   "author": "",

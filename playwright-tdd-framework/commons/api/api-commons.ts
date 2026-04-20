@@ -40,7 +40,53 @@ export class APICommons {
             default:
                 throw new Error(`Unsupported request type: ${requestType}`);
         }
-        console.log(await this.response.json());
+
+        //wait for 2 seconds to get the response.
+        setTimeout(() => {}, 2000);
+        if (requestType.toLowerCase()!== 'delete') {
+            console.log(await this.response.json());
+        }
     }
 
+
+    // Method to validate the status code
+    async validateStatusCode(expectedStatusCode: number) {
+        const actualStatusCode =await this.response.status();
+        expect(actualStatusCode).toBe(expectedStatusCode);
+    };
+
+    // Method To validate the status message. 
+        async validateStatusMessage(expectedStatusMessage: string) {
+        const actualStatusMessage=await this.response.statusText();
+        expect(actualStatusMessage).toBe(expectedStatusMessage);
+    };
+
+    //Method to Validate the Response Body
+    async validateResponseBody(key:string, expValue:any){
+        const responseBody = await this.response.json();
+        const actualValue = responseBody[key.toLowerCase()];
+        expect(actualValue).toBe(expValue);
+    }
+
+    //Method to Validate the Response Headers
+    async validateResponseHeader(headerKey:string, expectedHeaderValue:string){
+        const responseHeaders = await this.response.headers();
+        const actualHeaderValue = responseHeaders[headerKey.toLowerCase()];
+        expect(actualHeaderValue).toBe(expectedHeaderValue);
+    }
+
+    //Method to validate the schema of the response body
+    async validateResponseSchema(key:string,expectedType:string){
+        const responseBody = await this.response.json();
+        const actualValue = responseBody[key.toLowerCase()];
+        const type = typeof actualValue;
+        expect(type).toBe(expectedType);
+    }
+
+    //Method to validate the response cookies. 
+    async validateResponseCookies(cookieName: string, expectedCookieValue: string) {
+        const cookies = await this.response.cookies();
+        const actualCookieValue = cookies[cookieName.toLowerCase()];
+        expect(actualCookieValue).toBe(expectedCookieValue);       
+    }
 }

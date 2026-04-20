@@ -15,7 +15,7 @@
     "api": {
         "base_url": "https://api.github.com",
         "owner": "bharathtechacademy05",
-        "bearer_token": "Bearer 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"
+        "bearer_token": "Bearer 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"
     },
     "ollama": {
         "model": "ollama/model:latest",

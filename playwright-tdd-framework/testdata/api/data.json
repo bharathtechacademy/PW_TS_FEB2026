@@ -1,0 +1,31 @@
+{
+    "duplicateRepo":{
+        "requestType":"POST",
+        "endpoint":"/user/repos",
+        "body":{
+            "name":"JMeterRepo",
+            "description":"This is a test repository created using Playwright TDD Framework",
+            "private":true
+        },
+        "expectedStatusCode":422,
+        "expectedStatusMessage":"Unprocessable Entity",
+        "expErrorMessage":"Repository creation failed."
+    },
+    "validRepo":{
+        "requestType":"POST",
+        "endpoint":"/user/repos",
+        "body":{
+            "name":"playwrightRepo",
+            "description":"This is a test repository created using Playwright TDD Framework",
+            "private":true
+        },
+        "expectedStatusCode":201,
+        "expectedStatusMessage":"Created"
+    },
+    "deleteRepo":{
+        "requestType":"DELETE",
+        "endpoint":"/repos/bharathtechacademy05/playwrightRepo",    
+        "expectedStatusCode":204,
+        "expectedStatusMessage":"No Content"
+    }
+}
