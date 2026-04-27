@@ -1,0 +1,40 @@
+2026-04-24 08:56:16,776 INFO o.a.j.u.JMeterUtils: Setting Locale to en_IN
+2026-04-24 08:56:16,788 INFO o.a.j.JMeter: Loading user properties from: user.properties
+2026-04-24 08:56:16,789 INFO o.a.j.JMeter: Loading system properties from: system.properties
+2026-04-24 08:56:16,793 INFO o.a.j.JMeter: Copyright (c) 1998-2024 The Apache Software Foundation
+2026-04-24 08:56:16,793 INFO o.a.j.JMeter: Version 5.6.3
+2026-04-24 08:56:16,794 INFO o.a.j.JMeter: java.version=25.0.1
+2026-04-24 08:56:16,794 INFO o.a.j.JMeter: java.vm.name=Java HotSpot(TM) 64-Bit Server VM
+2026-04-24 08:56:16,794 INFO o.a.j.JMeter: os.name=Windows 11
+2026-04-24 08:56:16,794 INFO o.a.j.JMeter: os.arch=amd64
+2026-04-24 08:56:16,794 INFO o.a.j.JMeter: os.version=10.0
+2026-04-24 08:56:16,797 INFO o.a.j.JMeter: file.encoding=UTF-8
+2026-04-24 08:56:16,797 INFO o.a.j.JMeter: java.awt.headless=null
+2026-04-24 08:56:16,797 INFO o.a.j.JMeter: Max memory     =17087594496
+2026-04-24 08:56:16,797 INFO o.a.j.JMeter: Available Processors =8
+2026-04-24 08:56:16,809 INFO o.a.j.JMeter: Default Locale=English (India)
+2026-04-24 08:56:16,810 INFO o.a.j.JMeter: JMeter  Locale=English (India)
+2026-04-24 08:56:16,810 INFO o.a.j.JMeter: JMeterHome=C:\Training\PlaywrightTrainings\Feb_2026\playwright-tdd-framework\tests\load\jmeter
+2026-04-24 08:56:16,810 INFO o.a.j.JMeter: user.dir  =C:\Training\PlaywrightTrainings\Feb_2026\playwright-tdd-framework\tests\load\jmeter\bin
+2026-04-24 08:56:16,811 INFO o.a.j.JMeter: PWD       =C:\Training\PlaywrightTrainings\Feb_2026\playwright-tdd-framework\tests\load\jmeter\bin
+2026-04-24 08:56:16,812 INFO o.a.j.JMeter: IP: 192.168.0.249 Name: BharathReddy FullName: BharathReddy
+2026-04-24 08:56:16,820 INFO o.a.j.JMeter: Loaded icon properties from org/apache/jmeter/images/icon.properties
+2026-04-24 08:56:16,959 INFO o.a.j.JMeterGuiLauncher: Setting LAF to: laf:com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel
+2026-04-24 08:56:28,919 INFO o.a.j.s.FileServer: Default base='C:\Training\PlaywrightTrainings\Feb_2026\playwright-tdd-framework\tests\load\jmeter\bin'
+2026-04-24 08:56:28,922 INFO o.a.j.g.a.Load: Loading file: C:\Training\PlaywrightTrainings\Feb_2026\playwright-tdd-framework\tests\load\jmeter\testplans\LoadTest.jmx
+2026-04-24 08:56:28,922 INFO o.a.j.s.FileServer: Set new base='C:\Training\PlaywrightTrainings\Feb_2026\playwright-tdd-framework\tests\load\jmeter\testplans'
+2026-04-24 08:56:29,216 INFO o.a.j.s.SaveService: Testplan (JMX) version: 2.2. Testlog (JTL) version: 2.2
+2026-04-24 08:56:29,237 INFO o.a.j.s.SaveService: Using SaveService properties version 5.0
+2026-04-24 08:56:29,239 INFO o.a.j.s.SaveService: Using SaveService properties file encoding UTF-8
+2026-04-24 08:56:29,239 INFO o.a.j.s.SaveService: Loading file: C:\Training\PlaywrightTrainings\Feb_2026\playwright-tdd-framework\tests\load\jmeter\testplans\LoadTest.jmx
+2026-04-24 08:56:29,259 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/html is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2026-04-24 08:56:29,259 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xhtml+xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2026-04-24 08:56:29,259 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2026-04-24 08:56:29,259 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2026-04-24 08:56:29,259 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/vnd.wap.wml is org.apache.jmeter.protocol.http.parser.RegexpHTMLParser
+2026-04-24 08:56:29,259 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/css is org.apache.jmeter.protocol.http.parser.CssParser
+2026-04-24 08:56:29,577 INFO o.a.j.s.SampleResult: Note: Sample TimeStamps are START times
+2026-04-24 08:56:29,577 INFO o.a.j.s.SampleResult: sampleresult.default.encoding is set to UTF-8
+2026-04-24 08:56:29,577 INFO o.a.j.s.SampleResult: sampleresult.useNanoTime=true
+2026-04-24 08:56:29,577 INFO o.a.j.s.SampleResult: sampleresult.nanoThreadSleep=5000
+2026-04-24 08:56:29,767 INFO o.a.j.s.FileServer: Set new base='C:\Training\PlaywrightTrainings\Feb_2026\playwright-tdd-framework\tests\load\jmeter\testplans'

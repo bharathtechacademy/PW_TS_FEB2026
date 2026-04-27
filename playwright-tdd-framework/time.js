@@ -1,0 +1,1 @@
+console.log(new Date().toISOString().replaceAll(/[^a-zA-Z0-9]/g,""));

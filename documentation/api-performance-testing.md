@@ -113,3 +113,34 @@ Ex: 2 Loops (I want to repeat the same process two times. )
 Sample Thread Group:
 ![alt text](image-4.png)
 
+
+## What are configuration elements in JMeter? 
+Configuration elements are all about a set of templates that we are going to use to maintain the test data or configuration data while sending the API requests. 
+Right-click on the Thread group => Config element ==> Select the component
+
+Ex: User-defined variables. ,Http Header manager 
+
+User-defined variables => To maintain the test data that we can reuse in each and every API request 
+Http Header manager => To maintain all the header values before sending each and every API request, like authorization token and additional header values.
+
+## What is HTTP Sampler ?
+Sampler is all about the request that you want to validate in terms of performance testing. 
+Right-click on the Thread group => Sampler ==> Http Sampler
+
+HTTP Sampler => HTTP Sampler is the template that we are going to use to update API request details to validate the performance of API. 
+
+## Assertions in JMeter ?
+Assertions are all about a set of JMeter methods helping us in terms of validating the API response. 
+- Assertions are going to ensure the correctness of each and every request
+- it can catch the failure.
+- It is going to validate the response data. 
+
+
+## Listeners in JMeter ?
+Lessons are nothing but a set of components in JMeter that can record the test results related to the performance metrics. 
+View Results Tree => This listener is going to help us to capture each and every request and response details. 
+Summary Report => This listener is going to capture the response time, average response time, minimum and maximum response times for each and every individual request. 
+Assertion results => This listener is going to help us to capture the results related to the assertions that we have added under each and every API request. 
+
+
+## Pre-processor and Post Processor ?

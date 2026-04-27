@@ -49,6 +49,16 @@ let square = (a:number) => a*a;
 console.log(add(10,20));
 console.log(square(5));
 
+//advantage of arrow function
+//1. Arrow function is more concise than regular function.
+//2. Arrow function is more readable than regular function.
+//3. Arrow function is more efficient than regular function.
+//4. Arrow function is more flexible than regular function.
+//5. Arrow function is more powerful than regular function.
+//6. Arrow function is more versatile than regular function.
+//7. Arrow function is more convenient than regular function.
+//8. Arrow function is more reliable than regular function.
+
 
 //3. Anonymous Function
 

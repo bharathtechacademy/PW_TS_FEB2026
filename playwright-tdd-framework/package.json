@@ -9,7 +9,8 @@
     "test:report": "playwright show-report",
     "ui": "playwright test tests/ui --headed",
     "custom": "playwright test tests/ui -g \"Verify Login with Valid Credentials\" --headed",
-    "api": "playwright test tests/api/api-tests.spec.ts"
+    "api": "playwright test tests/api/api-tests.spec.ts",
+    "load": "playwright test tests/load/load-test.spec.ts"
   },
   "keywords": [],
   "author": "",
@@ -17,7 +18,7 @@
   "type": "module",
   "devDependencies": {
     "@playwright/test": "^1.59.1",
-    "@types/node": "^25.5.2"
+    "@types/node": "^25.6.0"
   },
   "dependencies": {
     "@types/pg": "^8.20.0",
