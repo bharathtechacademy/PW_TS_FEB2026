@@ -7,10 +7,10 @@
     },
     "db": {
         "host": "localhost",
-        "port": 330,
-        "username": "root",
-        "password": "password",
-        "database": "my_database"
+        "port": 5432,
+        "username": "postgres",
+        "password": "admin",
+        "database": "dvdrental"
     },
     "api": {
         "base_url": "https://api.github.com",

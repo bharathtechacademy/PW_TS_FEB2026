@@ -91,3 +91,33 @@ CHECK => This constraint is going to help us to add custom conditions.
 DEFAULT => Default constraint will be helping us to store a default value when the user has not entered any value while storing the data. 
 
 # SQL Functions
+The default methods available in SQL to perform different types of operations and manipulations on top of the data that we have stored previously within the database 
+
+## Aggregate functions 
+Aggregate functions are all about the functions designed to perform calculations on a set of rows and return a single result. 
+
+COUNT() => SELECT COUNT(*) FRPM EMPLOYEE => It will return the total number of rows available in the table. 
+SUM() =>SELECT SUM(SALARY) FRPM EMPLOYEE => It will return the sum of all the values stored in a particular column. 
+AVG() =>SELECT AVG(SALARY) FRPM EMPLOYEE => It will return the average value of all the values stored in the particular column. 
+MIN()=>SELECT MIN(SALARY) FRPM EMPLOYEE =>it will return the minimum value of all the values stored in the particular column. 
+MAX()=>SELECT MAX(SALARY) FRPM EMPLOYEE =>it will return the maximum value of all the values stored in the particular column.
+
+## String functions. 
+String functions in PostgreSQL are used to manipulate and transform the text or character data types. This is going to allow the user to format or extract or combine multiple string values together. 
+
+LENGTH() => It will return the total number of characters available in the string. 
+UPPER() => It will Convert all the characters of the string into uppercase and return the value. 
+LOWER() => It will Convert all the characters of the string into lowercase and return the value. 
+SUBSTRING(NAME FROM 1 TO 3) => Substring function will extract the part of the string from the character datatype. 
+TRIM() => trim function removes leading and trailing spaces from the string. 
+CONCAT() => The `concat` function joins two or more strings together. 
+
+## Numerical Functions
+Numerical functions in SQL are used to perform mathematical operations and transform numeric data into multiple formats. 
+
+ABS() => Returns the absolute value of number. => SELECT ABS (-123.75) => 123.75
+CEIL() => Returns the ceiling value, meaning the nearest next integer => CEIL(123.45) => 124
+FLOOR() => Returns the floor value, meaning the nearest previous integer => FLOOR(123.45) => 123
+ROUND() => Round off the number to the nearest integer or specific number of decimal places. 
+POWER() => It will return the power of so and so number. => POWER (2,3) = 8
+SQRT() => It will return the square root of the number. => SQRT(4) =2
