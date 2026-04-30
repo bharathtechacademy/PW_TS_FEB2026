@@ -4,6 +4,9 @@ class Employee {
     empId : number = 1234;
     empName : string = "John Doe";
 
+    //store const variables in a class
+
+
     empProjectDetails():void{      
         console.log("Employee is working on TypeScript Training");
     }

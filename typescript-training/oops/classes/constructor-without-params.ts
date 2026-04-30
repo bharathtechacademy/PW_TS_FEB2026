@@ -1,10 +1,6 @@
 //Class with multiple methods related to employee 
 class Employee {
 
-    constructor(){
-        
-    }
-
     //method 1
     printEmployeeDetails(empId: number, empName: string) {
         console.log("Employee Id: " + empId);
