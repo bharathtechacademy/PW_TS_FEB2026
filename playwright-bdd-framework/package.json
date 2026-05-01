@@ -1,0 +1,23 @@
+{
+  "name": "playwright-bdd-framework",
+  "version": "1.0.0",
+  "description": "goto terminal => cd playwright-bdd-framework",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "devDependencies": {
+    "@playwright/test": "^1.59.1",
+    "@types/node": "^25.6.0"
+  },
+  "dependencies": {
+    "@cucumber/cucumber": "^12.8.2",
+    "@types/pg": "^8.20.0",
+    "excel": "^1.0.1",
+    "pdf-parse-new": "^2.1.0",
+    "pg": "^8.20.0",
+    "xlsx": "^0.18.5"
+  }
+}

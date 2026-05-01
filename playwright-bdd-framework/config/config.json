@@ -1,0 +1,25 @@
+{
+    "app":{
+        "url":"https://accounts.creatio.com/login/alm",
+        "title":"Log in | Creatio",
+        "username":"bharattechacademy5@outlook.com",
+        "password":"BharathTechAcademy#1234"
+    },
+    "db": {
+        "host": "localhost",
+        "port": 5432,
+        "username": "postgres",
+        "password": "admin",
+        "database": "dvdrental"
+    },
+    "api": {
+        "base_url": "https://api.github.com",
+        "owner": "bharathtechacademy05",
+        "bearer_token": "Bearer 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"
+    },
+    "ollama": {
+        "model": "ollama/model:latest",
+        "temperature": 0.7,
+        "max_tokens": 1000
+    }
+}
