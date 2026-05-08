@@ -1,0 +1,14 @@
+{
+    "createRepo":{
+        "body":{
+            "name":"{repo-name}",
+            "description":"{repo-description}",
+            "private":true
+        }
+    },
+    "updateRepo":{
+        "body":{
+            "description":"{repo-description}"
+        }
+    }
+}

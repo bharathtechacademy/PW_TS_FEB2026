@@ -1,0 +1,4 @@
+{
+    "dvd-category":"Select * From Category",
+    "dvd-category-by-id":"Select * From Category where id = ?"
+}

@@ -21,4 +21,5 @@ class PlaywrightWorld extends World {
     }
 }
 
+export type CustomWorld = PlaywrightWorld;
 setWorldConstructor(PlaywrightWorld);

@@ -1,6 +1,7 @@
 Feature: Cookies feature in the CREATIO CRM application.
     I want to use this feature file to verify all the test scenarios related to the cookies page.
 
+    @smoke
     Scenario: Verify the Cookies Pop-up is displayed successfully.
         Given Launch the creatio crm application
         Then Verify cookies popup is displayed successfully

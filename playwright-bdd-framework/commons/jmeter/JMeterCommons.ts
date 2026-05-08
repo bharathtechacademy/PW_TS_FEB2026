@@ -28,15 +28,15 @@ export class JMeterCommons {
         console.log(`Running JMeter Test Plan: ${jmxFile}`);
         //Update the relative path of the JMeter folder structure. 
         const projectRoot = process.cwd();//Get the current working directory or project folder. 
-        const jmeterBasePath = `${projectRoot}/tests/load/jmeter`;
-        const jmeterToolPath = `${projectRoot}/tests/load/jmeter/bin/jmeter.bat`;
-        const testPlanPath = `${projectRoot}/tests/load/jmeter/testplans/${jmxFile}`;
+        const jmeterBasePath = `${projectRoot}/step-definitions/load/jmeter`;
+        const jmeterToolPath = `${jmeterBasePath}/bin/jmeter.bat`;
+        const testPlanPath = `${jmeterBasePath}/testplans/${jmxFile}`;
 
         //Update the relative path of the results folders. 
         console.log(`Generating results and reports for JMeter Test Plan: ${jmxFile}`);
         const timestamp = new Date().toISOString().replaceAll(/[^a-zA-Z0-9]/g, "");
-        const resultsPath = `${projectRoot}/tests/load/jmeter/results/TestResult_${timestamp}.csv`;
-        const reportsPath = `${projectRoot}/tests/load/jmeter/report-output`;
+        const resultsPath = `${jmeterBasePath}/results/TestResult_${timestamp}.csv`;
+        const reportsPath = `${jmeterBasePath}/report-output`;
 
         //Run the JMeter test plan and generate the CSV test results. 
         console.log(`Executing JMeter Test Plan: ${jmxFile}`);
