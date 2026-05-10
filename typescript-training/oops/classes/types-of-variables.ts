@@ -6,7 +6,12 @@
 
 class Employee{
 
-    empName:string = "Bharath Reddy"; //Instance Variable
+    readonly empName:string = "Bharath Reddy"; //Instance Variable
+
+    //readonly meaning is that the value of this variable cannot be changed once it is assigned.
+    //  It can only be assigned a value at the time of declaration or within the constructor of the class.
+    //  After that, it becomes immutable and cannot be modified.
+    //  This is useful for defining constants or values that should not be altered throughout the lifecycle of an object.
 
     static empProject : string = "Creatio"; //static variable
 
