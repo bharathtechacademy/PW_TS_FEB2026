@@ -96,3 +96,71 @@ URL = https://accounts.creatio.com/login/alm",application should be launched suc
 ,,,3,Verify whether Cookies popup is getting displayed,cookies pop-up should get displayed before the login page to take the consent from the user.,,,
 ,,,4,Verify logos displayed in the Cookies popup.,Creatio logo and Cookies Bot logo should be displayed within the cookies popup.,,,
 
+
+## CLEAR Framework
+Clear Framework is going to work very similarly to a human-like responses, especially when it comes to this Clear Framework. Along with RISC Framework-related features, we are also going to add an additional feature called Limitations. 
+
+Within the CLEAR framework:
+- C refers to context
+- L refers to limitations
+- E refers to examples
+- A refers to action
+- R refers to results
+
+
+* Writing a prompt to generate the test cases by using Clear Framework 
+
+context : This application is related to CREATIO CRM. It is a CRM-based application, and recently our developer designed the login page and added a couple of validations to avoid invalid logins. Now I want to write all the possible test cases to identify the maximum defects. For that, we need to generate detailed test cases that cover end-to-end functionality related to login. I want to upload the test cases in Azure TFS by following the standard Azure template. 
+
+limitations : 
+Do not generate duplicate test cases. 
+Avoid very generic test cases. 
+Focus on functional and usability and boundary scenarios. 
+Do not include anything related to performance and load testing. 
+
+Action :  Write all possible positive, negative, and edge Test cases for the given user story displayed on the current page. 
+
+Examples : I want a CSV file to be generated with positive, negative, and edge cases in the below format. 
+
+* Mandatory test steps along with expected results to be included in each and every testcase.
+
+1. Launch the Chrome browser. 
+2. Enter the URL and launch the application with the URL "https://accounts.creatio.com/login/alm"
+3. Verify whether the cookies pop-up is getting displayed. 
+4. Select the "Allow All" button and close the cookies popup. 
+5. Verify whether the login page is displayed successfully. 
+
+SampleTestCases.csv
+===================
+ID,Work Item Type,Title,Test Step,Step Action,Step Expected,Area Path,Assigned To,State
+,Test Case,Verify whether cookies popup is getting displayed when user launch the application,,,,Creatio CRM,Bharath Tech Academy <bharattechacademy3@outlook.com>,Design
+,,,1," Launch the browser. 
+
+Browser = Chrome", Browser should be launched successfully. ,,,
+,,,2," Enter URL and launch the application. 
+
+URL = https://accounts.creatio.com/login/alm", application should be launched successfully. ,,,
+,,,3, Verify whether Cookies popup is getting displayed ,cookies pop-up should get displayed before the login page to take the consent from the user. ,,,
+,Test Case,Verify Cookies Consent message displayed in the Cookies popup,,,,Creatio CRM,Bharath Tech Academy <bharattechacademy3@outlook.com>,Design
+,,,1," Launch the browser. 
+
+Browser = Chrome", Browser should be launched successfully. ,,,
+,,,2," Enter URL and launch the application. 
+
+URL = https://accounts.creatio.com/login/alm", application should be launched successfully. ,,,
+,,,3, Verify whether Cookies popup is getting displayed ,cookies pop-up should get displayed before the login page to take the consent from the user. ,,,
+,,,4,Verify Cookies Consent message displayed in the Cookies popup," consent message should be displayed as below
+
+""This website uses cookies",,,
+,Test Case,Verify logos displayed in the Cookies popup.,,,,Creatio CRM,Bharath Tech Academy <bharattechacademy3@outlook.com>,Design
+,,,1,"Launch the browser. 
+
+Browser = Chrome",Browser should be launched successfully.,,,
+,,,2,"Enter URL and launch the application. 
+
+URL = https://accounts.creatio.com/login/alm",application should be launched successfully.,,,
+,,,3,Verify whether Cookies popup is getting displayed,cookies pop-up should get displayed before the login page to take the consent from the user.,,,
+,,,4,Verify logos displayed in the Cookies popup.,Creatio logo and Cookies Bot logo should be displayed within the cookies popup.,,,
+
+
+Result  : Generate a CSV file with all the test cases to upload to Azure TFS. 
