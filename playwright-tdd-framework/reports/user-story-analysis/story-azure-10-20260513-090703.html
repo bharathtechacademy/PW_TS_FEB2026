@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User Story Analysis - Azure 10</title>
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --surface: #ffffff;
+      --text: #1f2937;
+      --muted: #5b6472;
+      --border: #d8e0ea;
+      --primary: #0f4c81;
+      --primary-2: #163b66;
+      --accent: #d97706;
+      --good: #1f7a46;
+      --bad: #b91c1c;
+      --warn: #9a6700;
+      --info: #2563eb;
+      --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: radial-gradient(circle at top left, #e8f1ff 0%, var(--bg) 35%, #eef2f7 100%);
+      color: var(--text);
+      line-height: 1.55;
+      padding: 24px;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    header {
+      padding: 28px 30px 22px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-2) 100%);
+      color: #fff;
+    }
+
+    header h1 {
+      margin: 0 0 8px;
+      font-size: 2rem;
+      letter-spacing: 0.2px;
+    }
+
+    .header-subtitle {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.9);
+      max-width: 900px;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .meta-card {
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 12px;
+      padding: 12px 14px;
+    }
+
+    .meta-label {
+      display: block;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(255, 255, 255, 0.78);
+      margin-bottom: 6px;
+    }
+
+    .meta-value { font-weight: 600; }
+
+    main { padding: 28px 30px 34px; }
+
+    section { margin-bottom: 28px; }
+
+    h2 {
+      margin: 0 0 14px;
+      font-size: 1.35rem;
+      color: var(--primary-2);
+      padding-bottom: 8px;
+      border-bottom: 2px solid #e5ebf3;
+    }
+
+    h3 {
+      margin: 18px 0 10px;
+      font-size: 1.05rem;
+      color: var(--primary);
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 11px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      border: 1px solid transparent;
+      width: fit-content;
+    }
+
+    .pill-blue { background: #e8f1ff; color: #174ea6; border-color: #c8dbff; }
+    .pill-green { background: #e8faf0; color: #166534; border-color: #c5efd7; }
+    .pill-amber { background: #fff7e6; color: #9a6700; border-color: #ffe0a3; }
+    .pill-red { background: #fff1f2; color: #be123c; border-color: #fecdd3; }
+    .pill-gray { background: #eef2f7; color: #334155; border-color: #d9e2ec; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    th, td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+      text-align: left;
+    }
+
+    th {
+      background: #f4f7fb;
+      color: var(--primary-2);
+      width: 24%;
+      font-weight: 700;
+    }
+
+    tr:last-child td, tr:last-child th { border-bottom: none; }
+
+    .note-box, .risk-box, .assumption-box, .issue-box {
+      border-left: 4px solid var(--accent);
+      background: #fffaf0;
+      padding: 14px 16px;
+      border-radius: 10px;
+      margin: 10px 0;
+    }
+
+    .risk-box { border-left-color: var(--bad); background: #fff5f5; }
+    .assumption-box { border-left-color: #ea8c00; background: #fffaf3; }
+    .issue-box { border-left-color: var(--info); background: #eff6ff; }
+
+    ul, ol { margin: 0 0 0 20px; }
+    li { margin-bottom: 6px; }
+
+    .scenario-table th:nth-child(1) { width: 8%; }
+    .scenario-table th:nth-child(2) { width: 14%; }
+    .scenario-table th:nth-child(3) { width: 12%; }
+    .scenario-table th:nth-child(4) { width: 22%; }
+    .scenario-table th:nth-child(5) { width: 22%; }
+    .scenario-table th:nth-child(6) { width: 8%; }
+    .scenario-table th:nth-child(7) { width: 8%; }
+
+    .trace-table th:nth-child(1) { width: 18%; }
+    .trace-table th:nth-child(2) { width: 34%; }
+    .trace-table th:nth-child(3) { width: 12%; }
+    .trace-table th:nth-child(4) { width: 12%; }
+
+    .badge-row { display: flex; flex-wrap: wrap; gap: 8px; }
+
+    .scenario-type-positive { background: #e8faf0; color: #166534; }
+    .scenario-type-negative { background: #fff1f2; color: #be123c; }
+    .scenario-type-boundary { background: #eff6ff; color: #1d4ed8; }
+    .scenario-type-validation { background: #f3e8ff; color: #6b21a8; }
+    .scenario-type-error { background: #fef2f2; color: #991b1b; }
+
+    .priority-p0 { background: #fee2e2; color: #991b1b; }
+    .priority-p1 { background: #ffedd5; color: #9a3412; }
+    .priority-p2 { background: #fef3c7; color: #92400e; }
+
+    .prewrap { white-space: pre-wrap; }
+
+    .footer {
+      padding: 18px 30px 24px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      border-top: 1px solid #e5ebf3;
+      background: #fafcff;
+    }
+
+    @media (max-width: 860px) {
+      body { padding: 12px; }
+      main, header, .footer { padding-left: 16px; padding-right: 16px; }
+      table, thead, tbody, th, td, tr { font-size: 0.95rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>User Story Analysis Report</h1>
+      <p class="header-subtitle">Functional requirements breakdown and test design for Azure Boards User Story 10.</p>
+      <div class="meta-grid">
+        <div class="meta-card"><span class="meta-label">Story ID</span><span class="meta-value">10</span></div>
+        <div class="meta-card"><span class="meta-label">Source Tool</span><span class="meta-value">Azure Boards</span></div>
+        <div class="meta-card"><span class="meta-label">Generated</span><span class="meta-value">2026-05-13 09:07:03</span></div>
+        <div class="meta-card"><span class="meta-label">Report File</span><span class="meta-value">story-azure-10-20260513-090703.html</span></div>
+      </div>
+    </header>
+
+    <main>
+      <section>
+        <h2>Raw Story Details</h2>
+        <div class="summary-grid">
+          <span class="pill pill-blue">Work Item Type: User Story</span>
+          <span class="pill pill-gray">State: New</span>
+          <span class="pill pill-amber">Priority: 2</span>
+          <span class="pill pill-green">Story Points: 5</span>
+          <span class="pill pill-gray">Value Area: Business</span>
+        </div>
+        <table>
+          <tbody>
+            <tr><th>Title</th><td>Login Form Validations for basic Login with user credentials</td></tr>
+            <tr><th>Work Item ID</th><td>10</td></tr>
+            <tr><th>Team Project / Area Path</th><td>Creatio CRM / Creatio CRM</td></tr>
+            <tr><th>Iteration Path</th><td>Creatio CRM\Sprint 1</td></tr>
+            <tr><th>Parent Epic</th><td>1 - User Login Experience</td></tr>
+            <tr><th>Created</th><td>2026-01-27T15:33:10.183Z</td></tr>
+            <tr><th>Last Changed</th><td>2026-01-29T14:55:20.613Z</td></tr>
+            <tr><th>Created By</th><td>Bharath Tech Academy</td></tr>
+            <tr><th>Changed By</th><td>Bharath Tech Academy</td></tr>
+            <tr><th>Description</th><td class="prewrap">As an existing user, I want to log in to my Creatio CRM account using my business email and password through a secure and well-designed form and get the errors when we update invalid credentials.</td></tr>
+            <tr><th>Acceptance Criteria</th><td>
+              <ul>
+                <li>Business Email field should be highlighted red and show <strong>Invalid email format</strong> when the user enters an invalid email format or invalid domain names.</li>
+                <li>Business Email field should be highlighted red and show <strong>Invalid email format</strong> when the user enters an email longer than 400 characters.</li>
+                <li>Password field should be highlighted red and show <strong>Invalid value. Value must contain up to 100 characters</strong> when the user enters a password longer than 100 characters.</li>
+                <li><strong>Invalid email or password</strong> should be displayed at the bottom of the page when the user enters an invalid username/password combination and attempts to log in.</li>
+              </ul>
+            </td></tr>
+            <tr><th>Comments / Attachments</th><td>Comments: 0. Attachments: none returned from the work item payload.</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2>Requirement Interpretation</h2>
+        <div class="issue-box">
+          <strong>Plain-language summary:</strong> this story requires a login form for existing Creatio CRM users with client-side and/or server-side validation that blocks malformed email values, overly long inputs, and invalid credentials, while presenting clear inline and page-level errors.
+        </div>
+        <h3>In Scope</h3>
+        <ul>
+          <li>Login form display for business email and password.</li>
+          <li>Email-format validation, including invalid domain patterns and overlength inputs.</li>
+          <li>Password length validation up to 100 characters.</li>
+          <li>Authentication error messaging for incorrect credentials.</li>
+          <li>Red error highlighting for invalid fields and error copy consistency.</li>
+        </ul>
+        <h3>Out of Scope</h3>
+        <ul>
+          <li>Password reset, account registration, and MFA flows.</li>
+          <li>Role-based access after authentication.</li>
+          <li>Browser/device-specific rendering beyond normal responsive behavior.</li>
+          <li>Security hardening not described by the story, such as lockout policy or CAPTCHA.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Assumptions and Open Questions</h2>
+        <div class="assumption-box">
+          <strong>Assumption:</strong> the login form includes at least two fields, Business Email and Password, plus a submit action.
+        </div>
+        <div class="assumption-box">
+          <strong>Assumption:</strong> the validation copy must match the acceptance criteria exactly, including capitalization and punctuation, unless product design specifies otherwise.
+        </div>
+        <div class="assumption-box">
+          <strong>Open question:</strong> should invalid email format be blocked on blur, on input, or only on submit?
+        </div>
+        <div class="assumption-box">
+          <strong>Open question:</strong> is the 400-character email limit inclusive of the full address string, and should the UI truncate or simply reject it?
+        </div>
+        <div class="assumption-box">
+          <strong>Open question:</strong> does password length validation happen only client-side, or must the backend return the same message for consistency?
+        </div>
+        <div class="assumption-box">
+          <strong>Open question:</strong> should spaces be trimmed from the email field before validation and authentication?
+        </div>
+      </section>
+
+      <section>
+        <h2>Risks and Dependencies</h2>
+        <div class="risk-box">
+          <strong>Risk 1:</strong> validation copy or trigger timing may differ between frontend and backend, causing unstable tests if the implementation is not standardized.
+        </div>
+        <div class="risk-box">
+          <strong>Risk 2:</strong> the authentication service may return a generic error message instead of the exact text required by the story, which would break strict verification.
+        </div>
+        <div class="risk-box">
+          <strong>Risk 3:</strong> email and password length constraints could differ between UI, API, and database layers, producing boundary defects.
+        </div>
+        <div class="risk-box">
+          <strong>Dependency:</strong> test execution needs stable credentials for at least one valid user and a controllable invalid-user dataset.
+        </div>
+        <div class="risk-box">
+          <strong>Dependency:</strong> the login service must be reachable in the chosen test environment; otherwise only UI-level validation can be verified.
+        </div>
+      </section>
+
+      <section>
+        <h2>Functional Test Plan</h2>
+        <h3>Objectives</h3>
+        <ul>
+          <li>Verify that valid users can log in successfully.</li>
+          <li>Verify that invalid email and password values are rejected with the expected messages.</li>
+          <li>Verify boundary behavior at the 400-character email limit and 100-character password limit.</li>
+          <li>Verify that the page-level invalid-credentials message appears only when authentication fails.</li>
+        </ul>
+        <h3>Test Levels</h3>
+        <ul>
+          <li>UI: field validation, error rendering, and message placement.</li>
+          <li>Integration: auth handshake and backend response mapping.</li>
+          <li>API: optional login-service verification if a direct endpoint is available in the environment.</li>
+        </ul>
+        <h3>Test Data Strategy</h3>
+        <ul>
+          <li>One known-good business email and password pair.</li>
+          <li>One invalid but well-formed email, one malformed email, and one overlength email.</li>
+          <li>One password at exactly 100 characters and one longer than 100 characters.</li>
+          <li>One invalid credential pair to trigger the bottom-of-page authentication error.</li>
+        </ul>
+        <h3>Environment Prerequisites</h3>
+        <ul>
+          <li>Creatio CRM login environment is available and stable.</li>
+          <li>At least one valid test account exists and is not locked.</li>
+          <li>Validation messages and selectors are known or discoverable in the target build.</li>
+        </ul>
+        <h3>Entry Criteria</h3>
+        <ul>
+          <li>Story and acceptance criteria are approved or ready for test execution.</li>
+          <li>Test environment is deployed and accessible.</li>
+          <li>Test accounts and input data are prepared.</li>
+        </ul>
+        <h3>Exit Criteria</h3>
+        <ul>
+          <li>All P0 and P1 scenarios pass or have approved defects.</li>
+          <li>Validation behavior matches the acceptance criteria.</li>
+          <li>No open blocker prevents login validation from being trusted in the target build.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Functional Test Scenarios</h2>
+        <table class="scenario-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Title</th>
+              <th>Preconditions</th>
+              <th>Test Steps</th>
+              <th>Expected Result</th>
+              <th>Priority</th>
+              <th>Type</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>S10-01</td>
+              <td>Valid login succeeds</td>
+              <td>Valid business email and password are available.</td>
+              <td>Enter valid credentials and submit the login form.</td>
+              <td>User is authenticated and redirected to the authenticated landing page with no validation errors.</td>
+              <td><span class="pill priority-p0">P0</span></td>
+              <td><span class="pill scenario-type-positive">Positive</span></td>
+            </tr>
+            <tr>
+              <td>S10-02</td>
+              <td>Invalid email format is rejected</td>
+              <td>Login page is open.</td>
+              <td>Enter an email without a valid format such as missing @ and submit.</td>
+              <td>Business Email field is highlighted red and the message Invalid email format is shown.</td>
+              <td><span class="pill priority-p0">P0</span></td>
+              <td><span class="pill scenario-type-validation">Validation</span></td>
+            </tr>
+            <tr>
+              <td>S10-03</td>
+              <td>Invalid domain name is rejected</td>
+              <td>Login page is open.</td>
+              <td>Enter an email with a malformed or unsupported domain and submit.</td>
+              <td>Business Email field is highlighted red and the message Invalid email format is shown.</td>
+              <td><span class="pill priority-p0">P0</span></td>
+              <td><span class="pill scenario-type-negative">Negative</span></td>
+            </tr>
+            <tr>
+              <td>S10-04</td>
+              <td>Email longer than 400 characters is rejected</td>
+              <td>Login page is open.</td>
+              <td>Paste an email value with more than 400 characters and submit.</td>
+              <td>Business Email field is highlighted red and the message Invalid email format is shown.</td>
+              <td><span class="pill priority-p1">P1</span></td>
+              <td><span class="pill scenario-type-boundary">Boundary</span></td>
+            </tr>
+            <tr>
+              <td>S10-05</td>
+              <td>Password longer than 100 characters is rejected</td>
+              <td>Login page is open.</td>
+              <td>Enter a valid email and a password with more than 100 characters, then submit.</td>
+              <td>Password field is highlighted red and the exact length validation message is shown.</td>
+              <td><span class="pill priority-p1">P1</span></td>
+              <td><span class="pill scenario-type-boundary">Boundary</span></td>
+            </tr>
+            <tr>
+              <td>S10-06</td>
+              <td>Invalid credentials show page-level error</td>
+              <td>Login page is open and the account is not locked.</td>
+              <td>Enter a validly formatted email and password combination that is not authorized and submit.</td>
+              <td>The bottom-of-page message Invalid email or password is displayed.</td>
+              <td><span class="pill priority-p0">P0</span></td>
+              <td><span class="pill scenario-type-error">Error Handling</span></td>
+            </tr>
+            <tr>
+              <td>S10-07</td>
+              <td>Empty submit shows field validation</td>
+              <td>Login page is open.</td>
+              <td>Leave both fields blank and click Login.</td>
+              <td>Required validation appears for the missing fields, or the first blocking validation is displayed consistently.</td>
+              <td><span class="pill priority-p1">P1</span></td>
+              <td><span class="pill scenario-type-validation">Validation</span></td>
+            </tr>
+            <tr>
+              <td>S10-08</td>
+              <td>Email populated, password blank</td>
+              <td>Login page is open.</td>
+              <td>Enter a valid email, leave password blank, and submit.</td>
+              <td>Password validation is shown and login is blocked.</td>
+              <td><span class="pill priority-p1">P1</span></td>
+              <td><span class="pill scenario-type-negative">Negative</span></td>
+            </tr>
+            <tr>
+              <td>S10-09</td>
+              <td>Password populated, email blank</td>
+              <td>Login page is open.</td>
+              <td>Leave email blank, enter a password, and submit.</td>
+              <td>Email validation is shown and login is blocked.</td>
+              <td><span class="pill priority-p1">P1</span></td>
+              <td><span class="pill scenario-type-negative">Negative</span></td>
+            </tr>
+            <tr>
+              <td>S10-10</td>
+              <td>Whitespace-only values are rejected</td>
+              <td>Login page is open.</td>
+              <td>Enter spaces in one or both fields and submit.</td>
+              <td>Fields are treated as empty or invalid and the correct validation appears.</td>
+              <td><span class="pill priority-p1">P1</span></td>
+              <td><span class="pill scenario-type-validation">Validation</span></td>
+            </tr>
+            <tr>
+              <td>S10-11</td>
+              <td>Email field accepts valid length and format</td>
+              <td>Login page is open.</td>
+              <td>Enter a syntactically valid business email and blur the field.</td>
+              <td>No email validation error is displayed.</td>
+              <td><span class="pill priority-p2">P2</span></td>
+              <td><span class="pill scenario-type-positive">Positive</span></td>
+            </tr>
+            <tr>
+              <td>S10-12</td>
+              <td>Password exactly 100 characters is accepted by validation</td>
+              <td>Login page is open.</td>
+              <td>Enter a valid email and a password with exactly 100 characters, then submit.</td>
+              <td>No length validation error is displayed for the password field.</td>
+              <td><span class="pill priority-p2">P2</span></td>
+              <td><span class="pill scenario-type-boundary">Boundary</span></td>
+            </tr>
+            <tr>
+              <td>S10-13</td>
+              <td>Correcting invalid email clears the error</td>
+              <td>Email validation error is currently visible.</td>
+              <td>Replace the invalid email with a valid one and re-evaluate or resubmit.</td>
+              <td>Email field returns to normal state and the invalid email message disappears.</td>
+              <td><span class="pill priority-p2">P2</span></td>
+              <td><span class="pill scenario-type-positive">Positive</span></td>
+            </tr>
+            <tr>
+              <td>S10-14</td>
+              <td>Correcting overlength password clears the error</td>
+              <td>Password length validation error is currently visible.</td>
+              <td>Replace the overlength password with a valid-length password and re-evaluate or resubmit.</td>
+              <td>Password field returns to normal state and the length validation message disappears.</td>
+              <td><span class="pill priority-p2">P2</span></td>
+              <td><span class="pill scenario-type-positive">Positive</span></td>
+            </tr>
+            <tr>
+              <td>S10-15</td>
+              <td>Invalid login does not show success state</td>
+              <td>Login page is open and invalid credentials are available.</td>
+              <td>Submit an invalid credential pair and observe the UI.</td>
+              <td>No authenticated landing page appears; the failure message remains visible and the user stays on the login screen.</td>
+              <td><span class="pill priority-p1">P1</span></td>
+              <td><span class="pill scenario-type-error">Error Handling</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2>Traceability Matrix</h2>
+        <table class="trace-table">
+          <thead>
+            <tr>
+              <th>Requirement</th>
+              <th>Description</th>
+              <th>Linked Scenarios</th>
+              <th>Coverage Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>R1</td>
+              <td>Email format and domain validation with red highlight and Invalid email format message.</td>
+              <td>S10-02, S10-03, S10-11, S10-13</td>
+              <td>Checks malformed input, bad domains, valid email behavior, and recovery after correction.</td>
+            </tr>
+            <tr>
+              <td>R2</td>
+              <td>Email longer than 400 characters is rejected.</td>
+              <td>S10-04</td>
+              <td>Boundary coverage for the email field length limit.</td>
+            </tr>
+            <tr>
+              <td>R3</td>
+              <td>Password longer than 100 characters is rejected.</td>
+              <td>S10-05, S10-12, S10-14</td>
+              <td>Boundary and recovery coverage for password length behavior.</td>
+            </tr>
+            <tr>
+              <td>R4</td>
+              <td>Invalid credentials display the bottom page error Invalid email or password.</td>
+              <td>S10-06, S10-15</td>
+              <td>Verifies failed authentication message and no false success state.</td>
+            </tr>
+            <tr>
+              <td>R5</td>
+              <td>Valid existing user can log in successfully.</td>
+              <td>S10-01</td>
+              <td>Primary positive path for the login form.</td>
+            </tr>
+            <tr>
+              <td>R6</td>
+              <td>Form remains usable and responsive while errors are displayed.</td>
+              <td>S10-07, S10-08, S10-09, S10-10</td>
+              <td>Ensures the form blocks submission cleanly for missing or whitespace-only values.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2>Missing Configuration or Retrieval Issues</h2>
+        <div class="note-box">None. Azure work item 10 was retrieved successfully and all required report sections were populated.</div>
+      </section>
+    </main>
+
+    <div class="footer">
+      Generated from Azure Boards work item 10 under the Creatio CRM project. This report is intended for functional analysis and test design only.
+    </div>
+  </div>
+</body>
+</html>

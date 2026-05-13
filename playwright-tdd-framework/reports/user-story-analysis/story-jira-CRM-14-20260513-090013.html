@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Story Analysis - CRM-14</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        header {
+            border-bottom: 3px solid #0052cc;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        h1 {
+            color: #0052cc;
+            margin-bottom: 10px;
+        }
+        h2 {
+            color: #003d99;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-left: 4px solid #0052cc;
+            padding-left: 15px;
+        }
+        h3 {
+            color: #0052cc;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        .badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-right: 10px;
+        }
+        .badge-story {
+            background-color: #e2e8f0;
+            color: #2d3748;
+        }
+        .badge-todo {
+            background-color: #bee3f8;
+            color: #2c5282;
+        }
+        .badge-medium {
+            background-color: #feebc8;
+            color: #7c2d12;
+        }
+        .badge-p0 {
+            background-color: #fc8181;
+            color: #742a2a;
+        }
+        .badge-p1 {
+            background-color: #f6ad55;
+            color: #7c2d12;
+        }
+        .badge-p2 {
+            background-color: #fbd38d;
+            color: #975a16;
+        }
+        .badge-positive {
+            background-color: #9ae6b4;
+            color: #22543d;
+        }
+        .badge-negative {
+            background-color: #fc8181;
+            color: #742a2a;
+        }
+        .badge-boundary {
+            background-color: #bee3f8;
+            color: #2c5282;
+        }
+        .badge-validation {
+            background-color: #d6bcfa;
+            color: #44337a;
+        }
+        .badge-error {
+            background-color: #fca5a5;
+            color: #5f2120;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        th {
+            background-color: #003d99;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+        .detail-table td:first-child {
+            font-weight: 600;
+            width: 200px;
+            background-color: #f9f9f9;
+        }
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        .acceptance-criteria {
+            background-color: #f0f7ff;
+            padding: 15px;
+            border-left: 4px solid #0052cc;
+            margin: 15px 0;
+        }
+        .assumption {
+            background-color: #fffaf0;
+            padding: 15px;
+            border-left: 4px solid #ed8936;
+            margin: 10px 0;
+        }
+        .risk {
+            background-color: #fff5f5;
+            padding: 15px;
+            border-left: 4px solid #f56565;
+            margin: 10px 0;
+        }
+        .scenario-row {
+            margin-bottom: 30px;
+            padding: 15px;
+            background-color: #fafafa;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .scenario-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .scenario-title {
+            font-weight: 600;
+            color: #003d99;
+            flex: 1;
+        }
+        .scenario-meta {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .scenario-section {
+            margin: 10px 0;
+        }
+        .scenario-section-label {
+            font-weight: 600;
+            color: #0052cc;
+        }
+        .test-step {
+            background-color: white;
+            padding: 10px;
+            margin: 8px 0;
+            border-left: 3px solid #0052cc;
+        }
+        .test-step strong {
+            color: #003d99;
+        }
+        .traceability {
+            background-color: #f0f7ff;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            text-align: center;
+            color: #666;
+            font-size: 12px;
+        }
+        .requirement-num {
+            background-color: #e2e8f0;
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            font-weight: bold;
+            color: #2d3748;
+            margin-right: 10px;
+        }
+        @media print {
+            body { background-color: white; }
+            .container { box-shadow: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>User Story Analysis Report</h1>
+            <div class="header-meta">
+                <div>
+                    <strong>Story ID:</strong> CRM-14
+                </div>
+                <div>
+                    <strong>Source:</strong> JIRA
+                </div>
+                <div>
+                    <strong>Generated:</strong> May 13, 2026
+                </div>
+            </div>
+        </header>
+
+        <!-- Story Details -->
+        <section>
+            <h2>Story Details</h2>
+            <table class="detail-table">
+                <tr>
+                    <td>Story Key</td>
+                    <td>CRM-14</td>
+                </tr>
+                <tr>
+                    <td>Title</td>
+                    <td>Login Form Validations for basic Login with user credentials</td>
+                </tr>
+                <tr>
+                    <td>Type</td>
+                    <td><span class="badge badge-story">Story</span></td>
+                </tr>
+                <tr>
+                    <td>Status</td>
+                    <td><span class="badge badge-todo">To Do</span></td>
+                </tr>
+                <tr>
+                    <td>Priority</td>
+                    <td><span class="badge badge-medium">Medium</span></td>
+                </tr>
+                <tr>
+                    <td>Parent Epic</td>
+                    <td>CRM-1: User Login Experience</td>
+                </tr>
+                <tr>
+                    <td>Sprint</td>
+                    <td>CRM Sprint 1 (Active: May 12 - May 26, 2026)</td>
+                </tr>
+                <tr>
+                    <td>Story Points</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>Created</td>
+                    <td>May 11, 2026</td>
+                </tr>
+                <tr>
+                    <td>Last Updated</td>
+                    <td>May 12, 2026</td>
+                </tr>
+                <tr>
+                    <td>Assignee</td>
+                    <td>Unassigned</td>
+                </tr>
+                <tr>
+                    <td>Creator/Reporter</td>
+                    <td>Bharath Tech Academy</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- Requirement Interpretation -->
+        <section>
+            <h2>Requirement Interpretation</h2>
+            <h3>User Story</h3>
+            <p style="font-style: italic; background-color: #f9f9f9; padding: 15px; border-radius: 4px;">
+                "As an existing user, when I attempt to log in, I want to receive error messages for invalid credentials so that I can correct my input and successfully access my account."
+            </p>
+            
+            <h3>Business Context</h3>
+            <p>This story addresses the need for proper input validation and user feedback on the login form for Creatio CRM. Users should receive clear, actionable error messages when they provide invalid credentials or improperly formatted data. This is part of the broader "User Login Experience" epic and helps ensure a smooth, user-friendly authentication process.</p>
+            
+            <h3>Acceptance Criteria</h3>
+            <div class="acceptance-criteria">
+                <h4 style="margin-top: 0; color: #0052cc;">
+                    <span class="requirement-num">1</span> Email Field - Invalid Format/Domain
+                </h4>
+                <p>The Business Email field should be highlighted with red color and display 'Invalid email format' when an invalid email format or domain is entered.</p>
+            </div>
+            <div class="acceptance-criteria">
+                <h4 style="margin-top: 0; color: #0052cc;">
+                    <span class="requirement-num">2</span> Email Field - Length Validation
+                </h4>
+                <p>The Business Email field should be highlighted with red color and display 'Invalid email format' when the email exceeds 400 characters.</p>
+            </div>
+            <div class="acceptance-criteria">
+                <h4 style="margin-top: 0; color: #0052cc;">
+                    <span class="requirement-num">3</span> Password Field - Length Validation
+                </h4>
+                <p>The Password field should be highlighted with red color and display 'Invalid value. Value must contain up to 100 characters' when the password exceeds 100 characters.</p>
+            </div>
+            <div class="acceptance-criteria">
+                <h4 style="margin-top: 0; color: #0052cc;">
+                    <span class="requirement-num">4</span> Invalid Credentials - Error Message
+                </h4>
+                <p>An 'Invalid email or password' error should be displayed at the bottom of the page when invalid username/password is entered.</p>
+            </div>
+
+            <h3>Scope Analysis</h3>
+            <h4>In-Scope</h4>
+            <ul>
+                <li>Email format validation (RFC 5322 compliance)</li>
+                <li>Email length validation (max 400 characters)</li>
+                <li>Password length validation (max 100 characters)</li>
+                <li>Invalid credentials error message display</li>
+                <li>Visual field highlighting (red color)</li>
+                <li>Error message text and positioning</li>
+            </ul>
+            <h4>Out-of-Scope</h4>
+            <ul>
+                <li>Password strength validation</li>
+                <li>Two-factor authentication</li>
+                <li>Account lockout after failed attempts</li>
+                <li>Remember me functionality</li>
+                <li>Social login integration</li>
+                <li>Password reset functionality</li>
+            </ul>
+        </section>
+
+        <!-- Assumptions and Open Questions -->
+        <section>
+            <h2>Assumptions and Open Questions</h2>
+            
+            <h3>Assumptions</h3>
+            <div class="assumption">
+                <strong>A1:</strong> Email format validation will follow RFC 5322 standard for valid email addresses.
+            </div>
+            <div class="assumption">
+                <strong>A2:</strong> Field highlighting with red color refers to both border and background or just border. Current assumption: border color.
+            </div>
+            <div class="assumption">
+                <strong>A3:</strong> The error messages should appear immediately on field blur or after attempting login.
+            </div>
+            <div class="assumption">
+                <strong>A4:</strong> "Invalid email or password" message should not specify which field is incorrect for security reasons.
+            </div>
+            <div class="assumption">
+                <strong>A5:</strong> The login form will be the default entry point for the application.
+            </div>
+            <div class="assumption">
+                <strong>A6:</strong> All validation rules apply to both desktop and mobile views.
+            </div>
+
+            <h3>Open Questions</h3>
+            <div style="background-color: #fff9e6; padding: 15px; border-left: 4px solid #fbbf24; margin: 10px 0;">
+                <ul>
+                    <li><strong>Q1:</strong> Should email validation be case-insensitive?</li>
+                    <li><strong>Q2:</strong> Should the form show validation errors on submit only or in real-time as user types?</li>
+                    <li><strong>Q3:</strong> How should the system handle SQL injection attempts in these fields?</li>
+                    <li><strong>Q4:</strong> What happens if password field contains special characters or unicode?</li>
+                    <li><strong>Q5:</strong> Should there be a maximum number of failed login attempts before lockout?</li>
+                    <li><strong>Q6:</strong> Are there any specific domains that should be whitelisted/blacklisted?</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Risks and Dependencies -->
+        <section>
+            <h2>Risks and Dependencies</h2>
+            
+            <h3>Risks</h3>
+            <div class="risk">
+                <h4 style="margin-top: 0; color: #c53030;">
+                    <strong>R1:</strong> Email Format Complexity (Medium Risk)
+                </h4>
+                <p>RFC 5322 standard for email validation is complex. Oversimplified regex patterns may reject valid emails or accept invalid ones. Recommend using a dedicated email validation library.</p>
+            </div>
+            <div class="risk">
+                <h4 style="margin-top: 0; color: #c53030;">
+                    <strong>R2:</strong> Security Vulnerability - Information Disclosure (Medium Risk)
+                </h4>
+                <p>Generic error message "Invalid email or password" helps prevent user enumeration attacks, but developers might be tempted to show specific errors. Need code review to ensure compliance.</p>
+            </div>
+            <div class="risk">
+                <h4 style="margin-top: 0; color: #c53030;">
+                    <strong>R3:</strong> Cross-Browser Compatibility (Low Risk)
+                </h4>
+                <p>Field highlighting and error display may render differently across browsers. Need testing on Chrome, Firefox, Safari, Edge, and mobile browsers.</p>
+            </div>
+            <div class="risk">
+                <h4 style="margin-top: 0; color: #c53030;">
+                    <strong>R4:</strong> Accessibility Compliance (Medium Risk)
+                </h4>
+                <p>Color-only highlighting (red) is not accessible for colorblind users. Should include ARIA labels and additional visual indicators beyond color.</p>
+            </div>
+            <div class="risk">
+                <h4 style="margin-top: 0; color: #c53030;">
+                    <strong>R5:</strong> Performance - Validation on Every Keystroke (Low Risk)
+                </h4>
+                <p>Real-time validation could impact performance if not properly debounced. Recommend client-side debouncing.</p>
+            </div>
+
+            <h3>Dependencies</h3>
+            <ul>
+                <li><strong>D1:</strong> Backend API must be available and responsive for credential validation</li>
+                <li><strong>D2:</strong> Database of valid user accounts must be accessible and properly indexed</li>
+                <li><strong>D3:</strong> UI component library or design system for consistent styling and error display</li>
+                <li><strong>D4:</strong> Frontend framework/technology (React, Vue, Angular, etc.) must support real-time validation</li>
+                <li><strong>D5:</strong> Test environment with test user accounts and various invalid credentials</li>
+                <li><strong>D6:</strong> Browser automation tools (Playwright) for UI testing</li>
+                <li><strong>D7:</strong> Compliance with OWASP security standards for authentication</li>
+            </ul>
+        </section>
+
+        <!-- Test Plan -->
+        <section>
+            <h2>Functional Test Plan</h2>
+            
+            <h3>Test Objectives</h3>
+            <ul>
+                <li>Validate that email format validation works correctly for valid and invalid email formats</li>
+                <li>Verify that email length validation rejects emails exceeding 400 characters</li>
+                <li>Verify that password length validation rejects passwords exceeding 100 characters</li>
+                <li>Confirm that appropriate error messages are displayed for validation failures</li>
+                <li>Verify that visual field highlighting (red color) is applied for invalid inputs</li>
+                <li>Validate that generic "Invalid email or password" message appears for authentication failures</li>
+                <li>Ensure that form allows successful login with valid credentials</li>
+            </ul>
+
+            <h3>Test Levels</h3>
+            <ul>
+                <li><strong>UI Level:</strong> Form interaction, field validation, error message display, visual styling</li>
+                <li><strong>API Level:</strong> Authentication endpoint, credential verification, error response codes</li>
+                <li><strong>Integration Level:</strong> End-to-end login flow, session management</li>
+            </ul>
+
+            <h3>Test Data Strategy</h3>
+            <table>
+                <tr>
+                    <th>Category</th>
+                    <th>Test Data</th>
+                    <th>Expected Behavior</th>
+                </tr>
+                <tr>
+                    <td>Valid Email Formats</td>
+                    <td>user@example.com, test.user@company.co.uk, user+tag@domain.com</td>
+                    <td>Should pass validation</td>
+                </tr>
+                <tr>
+                    <td>Invalid Email Formats</td>
+                    <td>plaintext, @example.com, user@, user @example.com, user@exam ple.com</td>
+                    <td>Should fail with "Invalid email format"</td>
+                </tr>
+                <tr>
+                    <td>Email Length Edge Cases</td>
+                    <td>399 char email, 400 char email, 401 char email</td>
+                    <td>399-400 chars pass, 401+ fail</td>
+                </tr>
+                <tr>
+                    <td>Valid Passwords</td>
+                    <td>TestPass123, P@ssw0rd, MyPassword!2024</td>
+                    <td>Should pass validation</td>
+                </tr>
+                <tr>
+                    <td>Password Length Edge Cases</td>
+                    <td>99 char password, 100 char password, 101 char password</td>
+                    <td>99-100 chars pass, 101+ fail</td>
+                </tr>
+                <tr>
+                    <td>Valid Credentials</td>
+                    <td>Known test user with correct password</td>
+                    <td>Should login successfully</td>
+                </tr>
+                <tr>
+                    <td>Invalid Credentials</td>
+                    <td>Valid email + wrong password, invalid email + valid password</td>
+                    <td>Should show "Invalid email or password"</td>
+                </tr>
+            </table>
+
+            <h3>Environment Prerequisites</h3>
+            <ul>
+                <li>Test CRM application URL accessible</li>
+                <li>Test user accounts created with known credentials</li>
+                <li>Database populated with valid user accounts</li>
+                <li>Playwright test framework configured and running</li>
+                <li>Browser drivers (Chromium, Firefox, Webkit) installed</li>
+                <li>Network connectivity to backend API</li>
+            </ul>
+
+            <h3>Entry Criteria</h3>
+            <ul>
+                <li>Story is in "Ready for Testing" or "In Progress" status</li>
+                <li>Feature code is deployed to test environment</li>
+                <li>Backend validation logic is implemented and tested</li>
+                <li>Test data fixtures are created</li>
+                <li>Test user accounts are available</li>
+            </ul>
+
+            <h3>Exit Criteria</h3>
+            <ul>
+                <li>All test scenarios have been executed</li>
+                <li>100% of planned scenarios passed or documented with acceptable risk</li>
+                <li>No critical or high-severity defects remain open</li>
+                <li>Code review completed and approved</li>
+                <li>Performance metrics are within acceptable thresholds</li>
+                <li>Accessibility testing completed (WCAG compliance)</li>
+            </ul>
+        </section>
+
+        <!-- Functional Test Scenarios -->
+        <section>
+            <h2>Functional Test Scenarios</h2>
+            <p><strong>Total Scenarios: 18</strong></p>
+
+            <!-- Scenario 1 -->
+            <div class="scenario-row">
+                <div class="scenario-header">
+                    <div class="scenario-title">TS-CRM-14-001: Valid Email Format - Standard Domain</div>
+                    <div class="scenario-meta">
+                        <span class="badge badge-p0">P0</span>
+                        <span class="badge badge-positive">Positive</span>
+                    </div>
+                </div>
+                <div class="scenario-section">
+                    <span class="scenario-section-label">Preconditions:</span>
+                    <ul>
+                        <li>User is on the CRM login page</li>
+                        <li>Login form is displayed and empty</li>
+                    </ul>
+                </div>
+                <div class="scenario-section">
+                    <span class="scenario-section-label">Test Steps:</span>
+                    <div class="test-step"><strong>Step 1:</strong> Enter valid email "user@example.com" in Business Email field</div>
+                    <div class="test-step"><strong>Step 2:</strong> Click outside the email field to trigger blur event</div>
+                    <div class="test-step"><strong>Step 3:</strong> Verify field highlighting and error messages</div>
+                </div>
+                <div class="scenario-section">
+                    <span class="scenario-section-label">Expected Result:</span>
+                    <ul>
+                        <li>Email field is not highlighted with red color</li>
+                        <li>No error message is displayed</li>
+                        <li>Field appears valid (standard styling)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Scenario 2 -->
+            <div class="scenario-row">
+                <div class="scenario-header">
+                    <div class="scenario-title">TS-CRM-14-002: Valid Email Format - Complex Format</div>
+                    <div class="scenario-meta">
+                        <span class="badge badge-p0">P0</span>
+                        <span class="badge badge-positive">Positive</span>
+                    </div>
+                </div>
+                <div class="scenario-section">
+                    <span class="scenario-section-label">Preconditions:</span>
+                    <ul>
+                        <li>User is on the CRM login page</li>
+                        <li>Login form is displayed and empty</li>
+                    </ul>
+                </div>
+                <div class="scenario-section">
+                    <span class="scenario-section-label">Test Steps:</span>
+                    <div class="test-step"><strong>Step 1:</strong> Enter email "john.doe+tag@company.co.uk" in Business Email field</div>
+                    <div class="test-step"><strong>Step 2:</strong> Click outside the email field to trigger blur event</div>
+                    <div class="test-step"><strong>Step 3:</strong> Verify field highlighting and error messages</div>
+                </div>
+                <div class="scenario-section">
+                    <span class="scenario-section-label">Expected Result:</span>
+                    <ul>
+                        <li>Email field is not highlighted with red color</li>
+                        <li>No error message is displayed</li>
+                        <li>Complex email format is accepted as valid</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Scenario 3 -->
+            <div class="scenario-row">
+                <div class="scenario-header">
+                    <div class="scenario-title">TS-CRM-14-003: Invalid Email Format - Missing @ Symbol</div>
+                    <div class="scenario-meta">
+                        <span class="badge badge-p0">P0</span>
+                        <span class="badge badge-negative">Negative</span>
+                    </div>
+                </div>
+                <div class="scenario-section">
+                    <span class="scenario-section-label">Preconditions:</span>
+                    <ul>
+                        <li>User is on the CRM login page</li>
+                        <li>Login form is displayed and empty</li>
+                    </ul>
+                </div>
+                <div class="scenario-section">
+                    <span class="scenario-section-label">Test Steps:</span>
+                    <div class="test-step"><strong>Step 1:</strong> Enter invalid email "userexample.com" in Business Email field</div>
+                    <div class="test-step"><strong>Step 2:</strong> Click outside the email field to trigger blur event</div>
+                    <div class="test-step"><strong>Step 3:</strong> Observe field highlighting and error message</div>
+                </div>
+                <div class="scenario-section">
+                    <span class="scenario-section-label">Expected Result:</span>
+                    <ul>
+                        <li>Email field is highlighted with red color</li>
+                        <li>Error message "Invalid email format" is displayed</li>
+                        <li>Field remains in error state until corrected</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Scenario 4 -->
+            <div class="scenario-row">
+                <div class="scenario-header">
+                    <div class="scenario-title">TS-CRM-14-004: Invalid Email Format - Space in Email</div>
+                    <div class="scenario-meta">
+                        <span class="badge badge-p1">P1</span>
+                        <span class="badge badge-negative">Negative</span>
+                    </div>
+                </div>
+                <div class="scenario-section">
+                    <span class="scenario-section-label">Preconditions:</span>
+                    <ul>
+                        <li>User is on the CRM login page</li>
+                        <li>Login form is displayed and empty</li>
+                    </ul>
+                </div>
+                <div class="scenario-section">
+                    <span class="scenario-section-label">Test Steps:</span>
+                    <div class="test-step"><strong>Step 1:</strong> Enter email with space "user name@example.com" in Business Email field</div>
+                    <div class="test-step"><strong>Step 2:</strong> Click outside the email field</div>
+                    <div class="test-step"><strong>Step 3:</strong> Verify validation result</div>
+                </div>
+                <div class="scenario-section">
+                    <span class="scenario-section-label">Expected Result:</span>
+                    <ul>
+                        <li>Email field is highlighted with red color</li>
+                        <li>Error message "Invalid email format" is displayed</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Scenario 5 -->
+            <div class="scenario-row">
+                <div class="scenario-header">
+                    <div class="scenario-title">TS-CRM-14-005: Invalid Email Format - No Domain Extension</div>
+                    <div class="scenario-meta">
+                        <span class="badge badge-p1">P1</span>
+                        <span class="badge badge-negative">Negative</span>
+                    </div>
+                </div>
+                <div class="scenario-section">
+                    <span class="scenario-section-label">Preconditions:</span>
+                    <ul>
+                        <li>User is on the CRM login page</li>
+                        <li>Login form is displayed and empty</li>
+                    </ul>
+                </div>
+                <div class="scenario-section">
+                    <span class="scenario-section-label">Test Steps:</span>
+                    <div class="test-step"><strong>Step 1:</strong> Enter email "user@example" (no domain extension) in Business Email field</div>
+                    <div class="test-step"><strong>Step 2:</strong> Click outside the email field</div>
+                    <div class="test-step"><strong>Step 3:</strong> Check for validation error</div>
+                </div>
+                <div class="scenario-section">
+                    <span class="scenario-section-label">Expected Result:</span>
+                    <ul>
+                        <li>Email field is highlighted with red color</li>
+                        <li>Error message "Invalid email format" is displayed</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Scenario 6 -->
+            <div class="scenario-row">
+                <div class="scenario-header">
+                    <div class="scenario-title">TS-CRM-14-006: Email Length - Boundary Test (400 characters)</div>
+                    <div class="scenario-meta">
+                        <span class="badge badge-p0">P0</span>
+                        <span class="badge badge-boundary">Boundary</span>
+                    </div>
+                </div>
+                <div class="scenario-section">
+                    <span class="scenario-section-label">Preconditions:</span>
+                    <ul>
+                        <li>User is on the CRM login page</li>
+                        <li>A 400-character valid email is prepared</li>
+                    </ul>
+                </div>
+                <div class="scenario-section">
+                    <span class="scenario-section-label">Test Steps:</span>
+                    <div class="test-step"><strong>Step 1:</strong> Enter 400-character valid email in Business Email field</div>
+                    <div class="test-step"><strong>Step 2:</strong> Click outside the email field</div>
+                    <div class="test-step"><strong>Step 3:</strong> Verify field status</div>
+                </div>
+                <div class="scenario-section">
+                    <span class="scenario-section-label">Expected Result:</span>
+                    <ul>
+                        <li>Email field is not highlighted with red color</li>
+                        <li>No error message is displayed</li>
+                        <li>Email at maximum length boundary is accepted</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Scenario 7 -->
+            <div class="scenario-row">
+                <div class="scenario-header">
+                    <div class="scenario-title">TS-CRM-14-007: Email Length - Exceeds Maximum (401 characters)</div>
+                    <div class="scenario-meta">
+                        <span class="badge badge-p0">P0</span>
+                        <span class="badge badge-boundary">Boundary</span>
+                    </div>
+                </div>
+                <div class="scenario-section">
+                    <span class="scenario-section-label">Preconditions:</span>
+                    <ul>
+                        <li>User is on the CRM login page</li>
+                        <li>A 401-character valid email format is prepared</li>
+                    </ul>
+                </div>
+                <div class="scenario-section">
+                    <span class="scenario-section-label">Test Steps:</span>
+                    <div class="test-step"><strong>Step 1:</strong> Enter 401-character email in Business Email field</div>
+                    <div class="test-step"><strong>Step 2:</strong> Click outside the email field</div>
+                    <div class="test-step"><strong>Step 3:</strong> Verify validation error</div>
+                </div>
+                <div class="scenario-section">
+                    <span class="scenario-section-label">Expected Result:</span>
+                    <ul>
+                        <li>Email field is highlighted with red color</li>
+                        <li>Error message "Invalid email format" is displayed</li>
+                        <li>Field rejects input exceeding 400 characters</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Scenario 8 -->
+            <div class="scenario-row">
+                <div class="scenario-header">
+                    <div class="scenario-title">TS-CRM-14-008: Password Length - Valid Maximum (100 characters)</div>
+                    <div class="scenario-meta">
+                        <span class="badge badge-p0">P0</span>
+                        <span class="badge badge-boundary">Boundary</span>
+                    </div>
+                </div>
+                <div class="scenario-section">
+                    <span class="scenario-section-label">Preconditions:</span>
+                    <ul>
+                        <li>User is on the CRM login page</li>
+                        <li>A 100-character password is prepared</li>
+                    </ul>
+                </div>
+                <div class="scenario-section">
+                    <span class="scenario-section-label">Test Steps:</span>
+                    <div class="test-step"><strong>Step 1:</strong> Enter 100-character password in Password field</div>
+                    <div class="test-step"><strong>Step 2:</strong> Click outside the password field</div>
+                    <div class="test-step"><strong>Step 3:</strong> Verify field status</div>
+                </div>
+                <div class="scenario-section">
+                    <span class="scenario-section-label">Expected Result:</span>
+                    <ul>
+                        <li>Password field is not highlighted with red color</li>
+                        <li>No error message is displayed</li>
+                        <li>Password at maximum length boundary is accepted</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Scenario 9 -->
+            <div class="scenario-row">
+                <div class="scenario-header">
+                    <div class="scenario-title">TS-CRM-14-009: Password Length - Exceeds Maximum (101 characters)</div>
+                    <div class="scenario-meta">
+                        <span class="badge badge-p0">P0</span>
+                        <span class="badge badge-boundary">Boundary</span>
+                    </div>
+                </div>
+                <div class="scenario-section">
+                    <span class="scenario-section-label">Preconditions:</span>
+                    <ul>
+                        <li>User is on the CRM login page</li>
+                        <li>A 101-character password is prepared</li>
+                    </ul>
+                </div>
+                <div class="scenario-section">
+                    <span class="scenario-section-label">Test Steps:</span>
+                    <div class="test-step"><strong>Step 1:</strong> Enter 101-character password in Password field</div>
+                    <div class="test-step"><strong>Step 2:</strong> Click outside the password field</div>
+                    <div class="test-step"><strong>Step 3:</strong> Observe error indication</div>
+                </div>
+                <div class="scenario-section">
+                    <span class="scenario-section-label">Expected Result:</span>
+                    <ul>
+                        <li>Password field is highlighted with red color</li>
+                        <li>Error message "Invalid value. Value must contain up to 100 characters" is displayed</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Scenario 10 -->
+            <div class="scenario-row">
+                <div class="scenario-header">
+                    <div class="scenario-title">TS-CRM-14-010: Invalid Credentials - Wrong Password</div>
+                    <div class="scenario-meta">
+                        <span class="badge badge-p0">P0</span>
+                        <span class="badge badge-negative">Negative</span>
+                    </div>
+                </div>
+                <div class="scenario-section">
+                    <span class="scenario-section-label">Preconditions:</span>
+                    <ul>
+                        <li>User is on the CRM login page</li>
+                        <li>Valid test user account exists with known email</li>
+                    </ul>
+                </div>
+                <div class="scenario-section">
+                    <span class="scenario-section-label">Test Steps:</span>
+                    <div class="test-step"><strong>Step 1:</strong> Enter valid test user email in Business Email field</div>
+                    <div class="test-step"><strong>Step 2:</strong> Enter incorrect password in Password field</div>
+                    <div class="test-step"><strong>Step 3:</strong> Click the Login button</div>
+                    <div class="test-step"><strong>Step 4:</strong> Observe error message display</div>
+                </div>
+                <div class="scenario-section">
+                    <span class="scenario-section-label">Expected Result:</span>
+                    <ul>
+                        <li>Login fails with generic error</li>
+                        <li>Error message "Invalid email or password" is displayed at bottom of page</li>
+                        <li>User remains on login page</li>
+                        <li>No sensitive information is revealed</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Scenario 11 -->
+            <div class="scenario-row">
+                <div class="scenario-header">
+                    <div class="scenario-title">TS-CRM-14-011: Invalid Credentials - Nonexistent Email</div>
+                    <div class="scenario-meta">
+                        <span class="badge badge-p0">P0</span>
+                        <span class="badge badge-negative">Negative</span>
+                    </div>
+                </div>
+                <div class="scenario-section">
+                    <span class="scenario-section-label">Preconditions:</span>
+                    <ul>
+                        <li>User is on the CRM login page</li>
+                        <li>Email that doesn't exist in the system is known</li>
+                    </ul>
+                </div>
+                <div class="scenario-section">
+                    <span class="scenario-section-label">Test Steps:</span>
+                    <div class="test-step"><strong>Step 1:</strong> Enter non-existent but valid format email in Business Email field</div>
+                    <div class="test-step"><strong>Step 2:</strong> Enter any password in Password field</div>
+                    <div class="test-step"><strong>Step 3:</strong> Click the Login button</div>
+                    <div class="test-step"><strong>Step 4:</strong> Observe error message</div>
+                </div>
+                <div class="scenario-section">
+                    <span class="scenario-section-label">Expected Result:</span>
+                    <ul>
+                        <li>Login fails</li>
+                        <li>Same generic error "Invalid email or password" is shown</li>
+                        <li>System does not reveal whether email exists in database</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Scenario 12 -->
+            <div class="scenario-row">
+                <div class="scenario-header">
+                    <div class="scenario-title">TS-CRM-14-012: Valid Credentials - Successful Login</div>
+                    <div class="scenario-meta">
+                        <span class="badge badge-p0">P0</span>
+                        <span class="badge badge-positive">Positive</span>
+                    </div>
+                </div>
+                <div class="scenario-section">
+                    <span class="scenario-section-label">Preconditions:</span>
+                    <ul>
+                        <li>User is on the CRM login page</li>
+                        <li>Valid test user account with known credentials exists</li>
+                    </ul>
+                </div>
+                <div class="scenario-section">
+                    <span class="scenario-section-label">Test Steps:</span>
+                    <div class="test-step"><strong>Step 1:</strong> Enter valid test user email in Business Email field</div>
+                    <div class="test-step"><strong>Step 2:</strong> Enter correct password in Password field</div>
+                    <div class="test-step"><strong>Step 3:</strong> Click the Login button</div>
+                    <div class="test-step"><strong>Step 4:</strong> Wait for page to load</div>
+                </div>
+                <div class="scenario-section">
+                    <span class="scenario-section-label">Expected Result:</span>
+                    <ul>
+                        <li>Login succeeds</li>
+                        <li>User is redirected to dashboard or home page</li>
+                        <li>Session is established with valid authentication token</li>
+                        <li>No error messages are displayed</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Scenario 13 -->
+            <div class="scenario-row">
+                <div class="scenario-header">
+                    <div class="scenario-title">TS-CRM-14-013: Multiple Validation Errors - Email and Password Both Invalid</div>
+                    <div class="scenario-meta">
+                        <span class="badge badge-p1">P1</span>
+                        <span class="badge badge-validation">Validation</span>
+                    </div>
+                </div>
+                <div class="scenario-section">
+                    <span class="scenario-section-label">Preconditions:</span>
+                    <ul>
+                        <li>User is on the CRM login page</li>
+                    </ul>
+                </div>
+                <div class="scenario-section">
+                    <span class="scenario-section-label">Test Steps:</span>
+                    <div class="test-step"><strong>Step 1:</strong> Enter invalid email format "invalidemail" in Business Email field</div>
+                    <div class="test-step"><strong>Step 2:</strong> Enter 105-character password in Password field</div>
+                    <div class="test-step"><strong>Step 3:</strong> Click outside Password field to trigger blur</div>
+                    <div class="test-step"><strong>Step 4:</strong> Observe both fields for error indications</div>
+                </div>
+                <div class="scenario-section">
+                    <span class="scenario-section-label">Expected Result:</span>
+                    <ul>
+                        <li>Email field is highlighted with red color</li>
+                        <li>Email error message "Invalid email format" is displayed</li>
+                        <li>Password field is highlighted with red color</li>
+                        <li>Password error message is displayed</li>
+                        <li>Both errors are clearly visible and distinguishable</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Scenario 14 -->
+            <div class="scenario-row">
+                <div class="scenario-header">
+                    <div class="scenario-title">TS-CRM-14-014: Error Message Persistence - Correction Flow</div>
+                    <div class="scenario-meta">
+                        <span class="badge badge-p1">P1</span>
+                        <span class="badge badge-validation">Validation</span>
+                    </div>
+                </div>
+                <div class="scenario-section">
+                    <span class="scenario-section-label">Preconditions:</span>
+                    <ul>
+                        <li>User is on the CRM login page with invalid email already entered and error displayed</li>
+                    </ul>
+                </div>
+                <div class="scenario-section">
+                    <span class="scenario-section-label">Test Steps:</span>
+                    <div class="test-step"><strong>Step 1:</strong> Identify field with red highlighting and error message</div>
+                    <div class="test-step"><strong>Step 2:</strong> Clear the invalid email and enter valid format "user@example.com"</div>
+                    <div class="test-step"><strong>Step 3:</strong> Click outside the field or wait for real-time validation</div>
+                    <div class="test-step"><strong>Step 4:</strong> Observe error message removal</div>
+                </div>
+                <div class="scenario-section">
+                    <span class="scenario-section-label">Expected Result:</span>
+                    <ul>
+                        <li>Error message disappears when corrected</li>
+                        <li>Red highlighting is removed from the email field</li>
+                        <li>Field returns to normal styling</li>
+                        <li>No validation errors remain</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Scenario 15 -->
+            <div class="scenario-row">
+                <div class="scenario-header">
+                    <div class="scenario-title">TS-CRM-14-015: Empty Form Submission</div>
+                    <div class="scenario-meta">
+                        <span class="badge badge-p1">P1</span>
+                        <span class="badge badge-error">Error Handling</span>
+                    </div>
+                </div>
+                <div class="scenario-section">
+                    <span class="scenario-section-label">Preconditions:</span>
+                    <ul>
+                        <li>User is on the CRM login page</li>
+                        <li>Both Email and Password fields are empty</li>
+                    </ul>
+                </div>
+                <div class="scenario-section">
+                    <span class="scenario-section-label">Test Steps:</span>
+                    <div class="test-step"><strong>Step 1:</strong> Click the Login button without entering any credentials</div>
+                    <div class="test-step"><strong>Step 2:</strong> Observe form behavior and error messages</div>
+                </div>
+                <div class="scenario-section">
+                    <span class="scenario-section-label">Expected Result:</span>
+                    <ul>
+                        <li>Form submission is prevented or appropriate error is shown</li>
+                        <li>Required field validation errors are displayed</li>
+                        <li>User receives clear indication that credentials are required</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Scenario 16 -->
+            <div class="scenario-row">
+                <div class="scenario-header">
+                    <div class="scenario-title">TS-CRM-14-016: Special Characters in Password Field</div>
+                    <div class="scenario-meta">
+                        <span class="badge badge-p2">P2</span>
+                        <span class="badge badge-validation">Validation</span>
+                    </div>
+                </div>
+                <div class="scenario-section">
+                    <span class="scenario-section-label">Preconditions:</span>
+                    <ul>
+                        <li>User is on the CRM login page</li>
+                        <li>Valid test user account with password containing special characters exists</li>
+                    </ul>
+                </div>
+                <div class="scenario-section">
+                    <span class="scenario-section-label">Test Steps:</span>
+                    <div class="test-step"><strong>Step 1:</strong> Enter valid email in Email field</div>
+                    <div class="test-step"><strong>Step 2:</strong> Enter password with special characters "P@$$w0rd!#%" in Password field</div>
+                    <div class="test-step"><strong>Step 3:</strong> Click outside the password field</div>
+                    <div class="test-step"><strong>Step 4:</strong> Verify field status</div>
+                </div>
+                <div class="scenario-section">
+                    <span class="scenario-section-label">Expected Result:</span>
+                    <ul>
+                        <li>Special characters are accepted in password field</li>
+                        <li>No validation errors are shown for special characters</li>
+                        <li>Character limit validation still applies</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Scenario 17 -->
+            <div class="scenario-row">
+                <div class="scenario-header">
+                    <div class="scenario-title">TS-CRM-14-017: Case Sensitivity - Email Field</div>
+                    <div class="scenario-meta">
+                        <span class="badge badge-p2">P2</span>
+                        <span class="badge badge-validation">Validation</span>
+                    </div>
+                </div>
+                <div class="scenario-section">
+                    <span class="scenario-section-label">Preconditions:</span>
+                    <ul>
+                        <li>User is on the CRM login page</li>
+                        <li>Valid test user account exists with lowercase email</li>
+                    </ul>
+                </div>
+                <div class="scenario-section">
+                    <span class="scenario-section-label">Test Steps:</span>
+                    <div class="test-step"><strong>Step 1:</strong> Enter test user email in mixed case "User@EXAMPLE.Com"</div>
+                    <div class="test-step"><strong>Step 2:</strong> Enter correct password for the lowercase version of the same email</div>
+                    <div class="test-step"><strong>Step 3:</strong> Click Login button</div>
+                    <div class="test-step"><strong>Step 4:</strong> Verify login result</div>
+                </div>
+                <div class="scenario-section">
+                    <span class="scenario-section-label">Expected Result:</span>
+                    <ul>
+                        <li>Login succeeds regardless of email case</li>
+                        <li>Email validation treats uppercase and lowercase as equivalent</li>
+                        <li>User is authenticated successfully</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Scenario 18 -->
+            <div class="scenario-row">
+                <div class="scenario-header">
+                    <div class="scenario-title">TS-CRM-14-018: SQL Injection Attempt - Malicious Input Detection</div>
+                    <div class="scenario-meta">
+                        <span class="badge badge-p0">P0</span>
+                        <span class="badge badge-error">Error Handling</span>
+                    </div>
+                </div>
+                <div class="scenario-section">
+                    <span class="scenario-section-label">Preconditions:</span>
+                    <ul>
+                        <li>User is on the CRM login page</li>
+                        <li>Application is deployed with SQL injection protections</li>
+                    </ul>
+                </div>
+                <div class="scenario-section">
+                    <span class="scenario-section-label">Test Steps:</span>
+                    <div class="test-step"><strong>Step 1:</strong> Enter SQL injection attempt "'; DROP TABLE users; --" in Email field</div>
+                    <div class="test-step"><strong>Step 2:</strong> Enter any password</div>
+                    <div class="test-step"><strong>Step 3:</strong> Click Login button</div>
+                    <div class="test-step"><strong>Step 4:</strong> Verify system remains stable</div>
+                </div>
+                <div class="scenario-section">
+                    <span class="scenario-section-label">Expected Result:</span>
+                    <ul>
+                        <li>Input is treated as literal string (not executed)</li>
+                        <li>Authentication fails with generic "Invalid email or password" message</li>
+                        <li>System remains stable with no database impact</li>
+                        <li>No error details are leaked to user</li>
+                        <li>Potentially log security event for monitoring</li>
+                    </ul>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Traceability Matrix -->
+        <section>
+            <h2>Traceability Matrix</h2>
+            <p>This matrix maps Acceptance Criteria to Test Scenarios to ensure complete test coverage.</p>
+            <table>
+                <tr>
+                    <th>Acceptance Criteria</th>
+                    <th>Related Scenarios</th>
+                    <th>Coverage</th>
+                </tr>
+                <tr>
+                    <td>AC1: Email field - Invalid format/domain</td>
+                    <td>TS-CRM-14-003, TS-CRM-14-004, TS-CRM-14-005, TS-CRM-14-013</td>
+                    <td><span style="color: green; font-weight: bold;">✓ Complete</span></td>
+                </tr>
+                <tr>
+                    <td>AC2: Email field - Length validation (400 chars max)</td>
+                    <td>TS-CRM-14-006, TS-CRM-14-007</td>
+                    <td><span style="color: green; font-weight: bold;">✓ Complete</span></td>
+                </tr>
+                <tr>
+                    <td>AC3: Password field - Length validation (100 chars max)</td>
+                    <td>TS-CRM-14-008, TS-CRM-14-009, TS-CRM-14-013</td>
+                    <td><span style="color: green; font-weight: bold;">✓ Complete</span></td>
+                </tr>
+                <tr>
+                    <td>AC4: Invalid email or password error message</td>
+                    <td>TS-CRM-14-010, TS-CRM-14-011, TS-CRM-14-013</td>
+                    <td><span style="color: green; font-weight: bold;">✓ Complete</span></td>
+                </tr>
+                <tr>
+                    <td>Valid credentials - Successful login</td>
+                    <td>TS-CRM-14-001, TS-CRM-14-002, TS-CRM-14-012, TS-CRM-14-017</td>
+                    <td><span style="color: green; font-weight: bold;">✓ Complete</span></td>
+                </tr>
+                <tr>
+                    <td>Security and Error Handling</td>
+                    <td>TS-CRM-14-014, TS-CRM-14-015, TS-CRM-14-016, TS-CRM-14-018</td>
+                    <td><span style="color: green; font-weight: bold;">✓ Complete</span></td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- Summary Statistics -->
+        <section>
+            <h2>Test Coverage Summary</h2>
+            <table>
+                <tr>
+                    <th>Metric</th>
+                    <th>Value</th>
+                </tr>
+                <tr>
+                    <td>Total Scenarios</td>
+                    <td>18</td>
+                </tr>
+                <tr>
+                    <td>P0 (Critical) Scenarios</td>
+                    <td>8</td>
+                </tr>
+                <tr>
+                    <td>P1 (High) Scenarios</td>
+                    <td>6</td>
+                </tr>
+                <tr>
+                    <td>P2 (Medium) Scenarios</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td>Positive Test Scenarios</td>
+                    <td>4</td>
+                </tr>
+                <tr>
+                    <td>Negative Test Scenarios</td>
+                    <td>5</td>
+                </tr>
+                <tr>
+                    <td>Boundary Test Scenarios</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>Validation Test Scenarios</td>
+                    <td>4</td>
+                </tr>
+                <tr>
+                    <td>Error Handling Scenarios</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td>Acceptance Criteria Coverage</td>
+                    <td>100%</td>
+                </tr>
+            </table>
+        </section>
+
+        <footer class="footer">
+            <p>Generated: May 13, 2026 | Source: JIRA | Story ID: CRM-14</p>
+            <p>This report is confidential and intended for authorized users only.</p>
+        </footer>
+    </div>
+</body>
+</html>
