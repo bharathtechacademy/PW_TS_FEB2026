@@ -1,0 +1,170 @@
+ID,Work Item Type,Title,Test Step,Step Action,Step Expected,Area Path,Assigned To,State
+,Test Case,Verify valid business login succeeds,,,,Creatio CRM,,Design
+,,,1,"Launch the browser.
+
+Browser = Chrome",Browser should be launched successfully.,,,
+,,,2,"Enter URL and launch the application.
+
+URL = https://accounts.creatio.com/login/alm",application should be launched successfully.,,,
+,,,3,Verify whether Cookies popup is getting displayed on top of the login page.,cookies pop-up should get displayed before the login page to take the consent from the user.,,,
+,,,4,Click on the Allow-All button and verify cookies pop-up is closed.,cookies pop-up should be closed successfully.,,,
+,,,5,Enter a valid business email and a valid password.,Business email and password are accepted in the login form.,,,
+,,,6,Click Login.,User is authenticated and redirected to the authenticated landing page with no validation errors.,,,
+,Test Case,Verify invalid email format is rejected,,,,Creatio CRM,,Design
+,,,1,"Launch the browser.
+
+Browser = Chrome",Browser should be launched successfully.,,,
+,,,2,"Enter URL and launch the application.
+
+URL = https://accounts.creatio.com/login/alm",application should be launched successfully.,,,
+,,,3,Verify whether Cookies popup is getting displayed on top of the login page.,cookies pop-up should get displayed before the login page to take the consent from the user.,,,
+,,,4,Click on the Allow-All button and verify cookies pop-up is closed.,cookies pop-up should be closed successfully.,,,
+,,,5,Enter an email without a valid format or missing @ symbol and a valid password.,Business Email is treated as invalid input.,,,
+,,,6,Click Login.,Business Email field is highlighted red and the message Invalid email format is shown.,,,
+,Test Case,Verify invalid email domain is rejected,,,,Creatio CRM,,Design
+,,,1,"Launch the browser.
+
+Browser = Chrome",Browser should be launched successfully.,,,
+,,,2,"Enter URL and launch the application.
+
+URL = https://accounts.creatio.com/login/alm",application should be launched successfully.,,,
+,,,3,Verify whether Cookies popup is getting displayed on top of the login page.,cookies pop-up should get displayed before the login page to take the consent from the user.,,,
+,,,4,Click on the Allow-All button and verify cookies pop-up is closed.,cookies pop-up should be closed successfully.,,,
+,,,5,Enter an email with a malformed or unsupported domain and a valid password.,Business Email is treated as invalid input.,,,
+,,,6,Click Login.,Business Email field is highlighted red and the message Invalid email format is shown.,,,
+,Test Case,Verify email longer than 400 characters is rejected,,,,Creatio CRM,,Design
+,,,1,"Launch the browser.
+
+Browser = Chrome",Browser should be launched successfully.,,,
+,,,2,"Enter URL and launch the application.
+
+URL = https://accounts.creatio.com/login/alm",application should be launched successfully.,,,
+,,,3,Verify whether Cookies popup is getting displayed on top of the login page.,cookies pop-up should get displayed before the login page to take the consent from the user.,,,
+,,,4,Click on the Allow-All button and verify cookies pop-up is closed.,cookies pop-up should be closed successfully.,,,
+,,,5,Paste a business email value with more than 400 characters and a valid password.,The overlength email is entered into the form.,,,
+,,,6,Click Login.,Business Email field is highlighted red and the message Invalid email format is shown.,,,
+,Test Case,Verify password longer than 100 characters is rejected,,,,Creatio CRM,,Design
+,,,1,"Launch the browser.
+
+Browser = Chrome",Browser should be launched successfully.,,,
+,,,2,"Enter URL and launch the application.
+
+URL = https://accounts.creatio.com/login/alm",application should be launched successfully.,,,
+,,,3,Verify whether Cookies popup is getting displayed on top of the login page.,cookies pop-up should get displayed before the login page to take the consent from the user.,,,
+,,,4,Click on the Allow-All button and verify cookies pop-up is closed.,cookies pop-up should be closed successfully.,,,
+,,,5,Enter a valid business email and a password with more than 100 characters.,The overlength password is entered into the form.,,,
+,,,6,Click Login.,Password field is highlighted red and the message Invalid value. Value must contain up to 100 characters is shown.,,,
+,Test Case,Verify invalid credentials show page-level error,,,,Creatio CRM,,Design
+,,,1,"Launch the browser.
+
+Browser = Chrome",Browser should be launched successfully.,,,
+,,,2,"Enter URL and launch the application.
+
+URL = https://accounts.creatio.com/login/alm",application should be launched successfully.,,,
+,,,3,Verify whether Cookies popup is getting displayed on top of the login page.,cookies pop-up should get displayed before the login page to take the consent from the user.,,,
+,,,4,Click on the Allow-All button and verify cookies pop-up is closed.,cookies pop-up should be closed successfully.,,,
+,,,5,Enter a validly formatted business email and an unauthorized password.,The credential pair is submitted for authentication.,,,
+,,,6,Click Login.,The bottom-of-page message Invalid email or password is displayed and the user remains on the login page.,,,
+,Test Case,Verify empty submit shows required validations,,,,Creatio CRM,,Design
+,,,1,"Launch the browser.
+
+Browser = Chrome",Browser should be launched successfully.,,,
+,,,2,"Enter URL and launch the application.
+
+URL = https://accounts.creatio.com/login/alm",application should be launched successfully.,,,
+,,,3,Verify whether Cookies popup is getting displayed on top of the login page.,cookies pop-up should get displayed before the login page to take the consent from the user.,,,
+,,,4,Click on the Allow-All button and verify cookies pop-up is closed.,cookies pop-up should be closed successfully.,,,
+,,,5,Leave Business Email and Password blank.,No credential value is entered into either field.,,,
+,,,6,Click Login.,Required validation appears for the missing fields or the first blocking validation is displayed consistently.,,,
+,Test Case,Verify blank password is blocked,,,,Creatio CRM,,Design
+,,,1,"Launch the browser.
+
+Browser = Chrome",Browser should be launched successfully.,,,
+,,,2,"Enter URL and launch the application.
+
+URL = https://accounts.creatio.com/login/alm",application should be launched successfully.,,,
+,,,3,Verify whether Cookies popup is getting displayed on top of the login page.,cookies pop-up should get displayed before the login page to take the consent from the user.,,,
+,,,4,Click on the Allow-All button and verify cookies pop-up is closed.,cookies pop-up should be closed successfully.,,,
+,,,5,Enter a valid business email and leave the password blank.,Only the email field is populated.,,,
+,,,6,Click Login.,Password validation is shown and login is blocked.,,,
+,Test Case,Verify blank business email is blocked,,,,Creatio CRM,,Design
+,,,1,"Launch the browser.
+
+Browser = Chrome",Browser should be launched successfully.,,,
+,,,2,"Enter URL and launch the application.
+
+URL = https://accounts.creatio.com/login/alm",application should be launched successfully.,,,
+,,,3,Verify whether Cookies popup is getting displayed on top of the login page.,cookies pop-up should get displayed before the login page to take the consent from the user.,,,
+,,,4,Click on the Allow-All button and verify cookies pop-up is closed.,cookies pop-up should be closed successfully.,,,
+,,,5,Leave Business Email blank and enter a password.,Only the password field is populated.,,,
+,,,6,Click Login.,Business Email validation is shown and login is blocked.,,,
+,Test Case,Verify whitespace-only values are rejected,,,,Creatio CRM,,Design
+,,,1,"Launch the browser.
+
+Browser = Chrome",Browser should be launched successfully.,,,
+,,,2,"Enter URL and launch the application.
+
+URL = https://accounts.creatio.com/login/alm",application should be launched successfully.,,,
+,,,3,Verify whether Cookies popup is getting displayed on top of the login page.,cookies pop-up should get displayed before the login page to take the consent from the user.,,,
+,,,4,Click on the Allow-All button and verify cookies pop-up is closed.,cookies pop-up should be closed successfully.,,,
+,,,5,Enter spaces in one or both fields and submit.,Whitespace-only data is entered into the login form.,,,
+,,,6,Click Login.,Fields are treated as empty or invalid and the correct validation appears.,,,
+,Test Case,Verify valid email format is accepted without validation error,,,,Creatio CRM,,Design
+,,,1,"Launch the browser.
+
+Browser = Chrome",Browser should be launched successfully.,,,
+,,,2,"Enter URL and launch the application.
+
+URL = https://accounts.creatio.com/login/alm",application should be launched successfully.,,,
+,,,3,Verify whether Cookies popup is getting displayed on top of the login page.,cookies pop-up should get displayed before the login page to take the consent from the user.,,,
+,,,4,Click on the Allow-All button and verify cookies pop-up is closed.,cookies pop-up should be closed successfully.,,,
+,,,5,Enter a syntactically valid business email.,The email is accepted by the field and can lose focus without error.,,,
+,,,6,Move focus away from the email field.,No email validation error is displayed.,,,
+,Test Case,Verify password exactly 100 characters is accepted by validation,,,,Creatio CRM,,Design
+,,,1,"Launch the browser.
+
+Browser = Chrome",Browser should be launched successfully.,,,
+,,,2,"Enter URL and launch the application.
+
+URL = https://accounts.creatio.com/login/alm",application should be launched successfully.,,,
+,,,3,Verify whether Cookies popup is getting displayed on top of the login page.,cookies pop-up should get displayed before the login page to take the consent from the user.,,,
+,,,4,Click on the Allow-All button and verify cookies pop-up is closed.,cookies pop-up should be closed successfully.,,,
+,,,5,Enter a valid business email.,The email is ready for password validation.,,,
+,,,6,Enter a password of exactly 100 characters.,The password is accepted for boundary validation.,,,
+,,,7,Click Login.,No password length validation error is displayed for the password field.,,,
+,Test Case,Verify correcting invalid email clears the error,,,,Creatio CRM,,Design
+,,,1,"Launch the browser.
+
+Browser = Chrome",Browser should be launched successfully.,,,
+,,,2,"Enter URL and launch the application.
+
+URL = https://accounts.creatio.com/login/alm",application should be launched successfully.,,,
+,,,3,Verify whether Cookies popup is getting displayed on top of the login page.,cookies pop-up should get displayed before the login page to take the consent from the user.,,,
+,,,4,Click on the Allow-All button and verify cookies pop-up is closed.,cookies pop-up should be closed successfully.,,,
+,,,5,Enter an invalid email and trigger the email validation error.,The invalid email message becomes visible.,,,
+,,,6,Replace the invalid email with a valid business email and re-evaluate or resubmit.,The corrected email is accepted by the field.,,,
+,,,7,Verify the email field state and message area.,Email field returns to normal state and the Invalid email format message disappears.,,,
+,Test Case,Verify correcting overlength password clears the error,,,,Creatio CRM,,Design
+,,,1,"Launch the browser.
+
+Browser = Chrome",Browser should be launched successfully.,,,
+,,,2,"Enter URL and launch the application.
+
+URL = https://accounts.creatio.com/login/alm",application should be launched successfully.,,,
+,,,3,Verify whether Cookies popup is getting displayed on top of the login page.,cookies pop-up should get displayed before the login page to take the consent from the user.,,,
+,,,4,Click on the Allow-All button and verify cookies pop-up is closed.,cookies pop-up should be closed successfully.,,,
+,,,5,Enter an overlength password and trigger the password validation error.,The password length error becomes visible.,,,
+,,,6,Replace the overlength password with a valid-length password and re-evaluate or resubmit.,The corrected password is accepted by the field.,,,
+,,,7,Verify the password field state and message area.,Password field returns to normal state and the length validation message disappears.,,,
+,Test Case,Verify invalid login does not show a success state,,,,Creatio CRM,,Design
+,,,1,"Launch the browser.
+
+Browser = Chrome",Browser should be launched successfully.,,,
+,,,2,"Enter URL and launch the application.
+
+URL = https://accounts.creatio.com/login/alm",application should be launched successfully.,,,
+,,,3,Verify whether Cookies popup is getting displayed on top of the login page.,cookies pop-up should get displayed before the login page to take the consent from the user.,,,
+,,,4,Click on the Allow-All button and verify cookies pop-up is closed.,cookies pop-up should be closed successfully.,,,
+,,,5,Enter a validly formatted business email and an unauthorized password.,The invalid credential pair is submitted.,,,
+,,,6,Click Login.,No authenticated landing page appears and the failure message remains visible.,,,
+,,,7,Verify the current page after the failed login attempt.,User stays on the login screen and does not receive a success state.,,,
