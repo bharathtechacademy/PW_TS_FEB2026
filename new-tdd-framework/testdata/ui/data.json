@@ -1,0 +1,6 @@
+{
+  "Verify login fails with invalid credentials": {
+    "username": "NotAValidOrangeUser",
+    "password": "WrongPassword999!"
+  }
+}

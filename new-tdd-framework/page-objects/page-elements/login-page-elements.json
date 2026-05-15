@@ -1,0 +1,12 @@
+{
+  "loginHeading": ".orangehrm-login-slot h5",
+  "usernameInput": "input[name='username']",
+  "passwordInput": "input[name='password']",
+  "loginButton": "button[type='submit']",
+  "forgotPasswordLink": "p.orangehrm-login-forgot-header",
+  "invalidCredentialsMessage": ".oxd-alert-content-text",
+  "requiredFieldError": "span.oxd-input-field-error-message",
+  "loginBranding": ".orangehrm-login-branding",
+  "credentialsHint": "p:has-text('Username : Admin')",
+  "footerSocialSection": ".orangehrm-login-footer-sm"
+}

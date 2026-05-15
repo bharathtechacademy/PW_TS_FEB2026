@@ -1,0 +1,8 @@
+{
+  "sampleGet": {
+    "requestType": "get",
+    "endpoint": "/get",
+    "expectedStatusCode": 200,
+    "expectedStatusMessage": "OK"
+  }
+}

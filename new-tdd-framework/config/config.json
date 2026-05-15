@@ -1,0 +1,9 @@
+{
+  "app": {
+    "url": "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login",
+    "title": "OrangeHRM"
+  },
+  "api": {
+    "base_url": "https://httpbin.org"
+  }
+}

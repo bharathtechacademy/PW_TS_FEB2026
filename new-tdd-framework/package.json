@@ -1,0 +1,22 @@
+{
+  "name": "orangehrm-playwright-tdd-framework",
+  "version": "1.0.0",
+  "description": "Playwright TDD UI framework for OrangeHRM (page elements, steps, web commons).",
+  "type": "module",
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:report": "playwright show-report",
+    "ui": "playwright test tests/ui --headed",
+    "api": "playwright test tests/api/api-tests.spec.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.52.0",
+    "@types/node": "^22.14.0",
+    "dotenv": "^16.5.0",
+    "typescript": "^5.8.3"
+  }
+}

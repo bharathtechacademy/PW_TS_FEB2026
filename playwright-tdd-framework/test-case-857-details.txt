@@ -1,0 +1,44 @@
+﻿TEST CASE ID: 857
+TITLE: Verify adding a new user within the CREATIO CRM application.
+
+STEPS:
+Step 1: Launch the application using url https://accounts.creatio.com/login/alm
+Expected: CREATIO CRM application should be launched. 
+
+Step 2: Verify the cookies page is displayed. 
+Expected: Cookies popup should be displayed successfully. 
+
+Step 3: Verify cookie selection buttons are displayed within the cookies pop-up. 
+Expected: Cookie selection button should be displayed successfully. 
+
+Step 4: Click on the Allow All selection button. 
+Expected: User should be able to select the Allow All Selection button. 
+
+Step 5: Verify cookies pop-up is closed successfully. 
+Expected: When the user clicks on the Allow All button, the cookies popup should close successfully. 
+
+Step 6: Verify the login page is displayed. 
+Expected: After closing the Cookies popup, the login page should be displayed successfully. 
+
+Step 7: Enter valid username and password. 
+Expected: Users should be able to update valid username and password within the login screen. 
+
+Step 8: Click on the login button. 
+Expected: User should be able to log in to the application successfully. 
+
+Step 9: Wait until the user's menu is getting displayed within the home page. 
+Expected: Users menu should be displayed within the home page. 
+
+Step 10: Click on the Users menu. 
+Expected: User should be able to see the '+ Add user' button. 
+
+Step 11: Click on the add user button. 
+Expected: New user screen should be displayed to add the user email and role from the dropdown. 
+
+Step 12: Update unique email address and also select the role 'Developer'  from the drop down. 
+Expected: User should be able to update the email and select the 'Developer' role. 
+
+Step 13: Click on the invite button. 
+Expected: Invitation should be sent, and the new user details should be added to the Invited user's list in the same page
+
+

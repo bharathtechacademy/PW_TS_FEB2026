@@ -1,6 +1,11 @@
 {
     "homePageHeaderLink": "span:text-is('Application Hub')",
     "usersLink": "span:text-is('Users')",
+    "addUserButton": "button:has-text('Add user')",
+    "addUserEmailTextBox": "input[aria-label*='mail'], input[placeholder*='mail' i], input[type='email']",
+    "roleDropdown": "div[aria-label='Role']",
+    "inviteButton": "button:has-text('Invite')",
     "profile":"span[class*='contact-photo']",
-    "logoutLink":"//span[text()='Log out']"
+    "logoutLink":"//span[text()='Log out']",
+    "invitedUsersListSection":"text=Invited users"
 }

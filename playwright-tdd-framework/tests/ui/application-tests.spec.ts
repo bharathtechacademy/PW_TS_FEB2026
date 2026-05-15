@@ -78,7 +78,7 @@ test.describe('UI Application Tests', () => {
     });
 
     //Test Case 9: Verify Login Functionality with valid credentials.
-    test('Verify Login with Valid Credentials', async ({}, testInfo: TestInfo) => {
+    test('Verify Login with Valid Credentials', async ({ }, testInfo: TestInfo) => {
         test.slow();
         testData = data[testInfo.title as keyof typeof data];
         await loginPage.launchtheApplication();
@@ -93,7 +93,7 @@ test.describe('UI Application Tests', () => {
     });
 
     //Test Case 10: Verify Login Functionality with invalid credentials.
-    test('Verify Login with Invalid Credentials', async ({}, testInfo: TestInfo) => {
+    test('Verify Login with Invalid Credentials', async ({ }, testInfo: TestInfo) => {
         testData = data[testInfo.title as keyof typeof data];
         await loginPage.launchtheApplication();
         await cookiesPage.verifyCookiesPageIsDisplayed();
@@ -107,7 +107,7 @@ test.describe('UI Application Tests', () => {
     });
 
     //Test Case 11: Verify Forgot Password Functionality.
-    test('Verify Forgot Password Functionality', async ({}, testInfo: TestInfo) => {
+    test('Verify Forgot Password Functionality', async ({ }, testInfo: TestInfo) => {
         testData = data[testInfo.title as keyof typeof data];
         await loginPage.launchtheApplication();
         await cookiesPage.verifyCookiesPageIsDisplayed();
@@ -131,5 +131,30 @@ test.describe('UI Application Tests', () => {
         await loginPage.verifySocialMediaLoginIcons();
     });
 
+    //Test Case 857: Verify adding a new user within the CREATIO CRM application
+    test('Verify adding a new user within the CREATIO CRM application', async ({ }, testInfo: TestInfo) => {
+        testData = data[testInfo.title as keyof typeof data];
+        const uniqueEmail = `${testData.newUserEmailPrefix}+${Date.now()}@${testData.newUserEmailDomain}`;
+
+        await loginPage.launchtheApplication();
+        await cookiesPage.verifyCookiesPageIsDisplayed();
+        await cookiesPage.verifyCookiesPageSelectionButtons();
+        await cookiesPage.clickOnSelectionButton("allow all");
+        await cookiesPage.verifyCookiesPopupIsClosed();
+        await loginPage.verifyLoginPageIsDisplayed();
+        await loginPage.enterUsernameAndPassword(testData.username, testData.password);
+        await loginPage.clickOnLoginButton();
+        await homePage.verifyHomePageIsDisplayed();
+        await homePage.verifyUsersMenuIsDisplayed();
+        await homePage.clickOnUsersMenu();
+        await homePage.verifyAddUserButtonIsDisplayed();
+        await homePage.clickOnAddUserButton();
+        await homePage.verifyAddUserFormIsDisplayed();
+        await homePage.enterInviteUserEmail(uniqueEmail);
+        await homePage.selectUserRole("Developer");
+        await homePage.clickOnInviteButton();
+        await homePage.verifyInvitedUsersListIsDisplayed();
+        await homePage.verifyInvitedUserIsListed(uniqueEmail);
+    });
 
 });
